@@ -3,7 +3,19 @@
   padding: 0;
   text-align: center;
 }
-
-.evento2{
-  background-color: red !important;
+* {
+  -webkit-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  user-select: none; 
+  -webkit-user-drag: none;
+  -moz-user-drag: none; 
+  -ms-user-drag: none; 
+  user-drag: none;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

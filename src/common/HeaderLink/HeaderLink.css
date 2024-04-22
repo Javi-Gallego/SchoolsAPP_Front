@@ -1,0 +1,14 @@
+.headerLinkDesign {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--secondary-color);
+  position: relative;
+  transition: all 300ms ease;
+  font-weight: bold;
+  width: fit-content;
+  cursor: pointer;
+  margin: 1em;
+}
