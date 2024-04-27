@@ -1,18 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Login.css";
 import { LoginData } from "../../interfaces/interfaces";
 import { LogUser } from "../../services/ApiCalls";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { decodeToken } from "react-jwt";
 import { useAuthStore } from "../../store/credentials";
+import { useUserInfoStore } from "../../store/userData";
 
 export const Login: React.FC = () => {
   const { setToken } = useAuthStore();
   const { token } = useAuthStore();
+  const { setUser } = useUserInfoStore();
+  const { firstName } = useUserInfoStore();
+  const { profilePhoto } = useUserInfoStore();
+  const { schoolId } = useUserInfoStore();
+
   const [credentials, setCredentials] = useState<LoginData>({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    console.log("token 2: ", token);
+  }, [token]);
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setCredentials((prevState) => ({
@@ -24,12 +34,22 @@ export const Login: React.FC = () => {
   const logMe = async (): Promise<void> => {
     const fetched = await LogUser(credentials);
 
-    console.log(fetched);
     const decoded = decodeToken(fetched.token);
-    console.log(decoded);
-console.log("fetched.token: ", fetched.token);
+
+    // interface Yuser {
+    //   firstName: unknown;
+    //   profilePhoto: unknown;
+    //   schoolId: unknown;
+    // }
+    // let newUser:Yuser = {
+    //   firstName: decoded.firstName,
+    //   profilePhoto: decoded.profilePhoto,
+    //   schoolId: decoded.schoolId,
+    // };
+    
     setToken(fetched.token);
-    console.log(token);
+    // setUser(newUser);
+
   };
 
   return (
