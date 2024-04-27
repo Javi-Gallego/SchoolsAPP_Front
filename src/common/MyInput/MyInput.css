@@ -1,0 +1,32 @@
+.authInputDesign {
+    width: 25vw;
+    height: 7vh;
+  
+    border-radius: 0.3em;
+    border: 0.1em solid var(--secondary-color);
+    font-size: 1rem;
+    margin: 0.5em 0;
+  }
+  
+  .authInputDesignError {
+    border: 0.2em solid red;
+  }
+  
+  .authInputDesign:focus {
+    box-shadow: 1px 1px 5px 1px var(--secondary-color);
+    outline: none;
+  }
+  
+  @media screen and (max-width: 864px) {
+    .authInputDesign {
+      width: 50vw;
+      height: 4.5vh;
+    }
+  }
+  
+  @media screen and (max-width: 400px) {
+    .buttonDesign {
+      width: 50vw;
+      height: 6vh;
+    }
+  }

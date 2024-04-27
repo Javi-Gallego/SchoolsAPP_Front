@@ -1,3 +1,4 @@
+import { HeaderLinkProps } from "../../interfaces/interfaces";
 import "./HeaderLink.css";
 import { useNavigate } from "react-router-dom";
 

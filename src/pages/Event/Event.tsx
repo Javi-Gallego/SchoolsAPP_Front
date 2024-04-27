@@ -3,7 +3,7 @@ import "./Event.css";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 
-export default function Event() {
+export const Event: React.FC = () => {
   const events = [
     {
       title: "prueba 1",

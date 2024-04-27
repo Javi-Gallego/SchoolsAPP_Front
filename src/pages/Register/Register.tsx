@@ -1,6 +1,6 @@
 import "./Register.css";
 
-export const Register = () => {
+export const Register: React.FC = () => {
 
   return (
     <div className="registerDesign">
