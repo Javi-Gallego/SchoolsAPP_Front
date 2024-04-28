@@ -1,28 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Login.css";
 import { LoginData } from "../../interfaces/interfaces";
 import { LogUser } from "../../services/ApiCalls";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { decodeToken } from "react-jwt";
 import { useAuthStore } from "../../store/credentials";
-import { useUserInfoStore } from "../../store/userData";
+import { MyButton } from "../../common/MyButton/MyButton";
 
 export const Login: React.FC = () => {
   const { setToken } = useAuthStore();
-  const { token } = useAuthStore();
-  const { setUser } = useUserInfoStore();
-  const { firstName } = useUserInfoStore();
-  const { profilePhoto } = useUserInfoStore();
-  const { schoolId } = useUserInfoStore();
+  const { setFirstName } = useAuthStore();
+  const { setProfilePhoto } = useAuthStore();
+  const { setSchoolId } = useAuthStore();
+  const { setRoles } = useAuthStore();
 
   const [credentials, setCredentials] = useState<LoginData>({
     email: "",
     password: "",
   });
-
-  useEffect(() => {
-    console.log("token 2: ", token);
-  }, [token]);
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setCredentials((prevState) => ({
@@ -36,20 +31,19 @@ export const Login: React.FC = () => {
 
     const decoded = decodeToken(fetched.token);
 
-    // interface Yuser {
-    //   firstName: unknown;
-    //   profilePhoto: unknown;
-    //   schoolId: unknown;
-    // }
-    // let newUser:Yuser = {
-    //   firstName: decoded.firstName,
-    //   profilePhoto: decoded.profilePhoto,
-    //   schoolId: decoded.schoolId,
-    // };
-    
     setToken(fetched.token);
-    // setUser(newUser);
-
+    if (typeof decoded === 'object' && decoded !== null && 'firstName' in decoded && typeof decoded.firstName === 'string') {
+      setFirstName(decoded.firstName);
+    }
+    if (typeof decoded === 'object' && decoded !== null && 'profilePhoto' in decoded && typeof decoded.profilePhoto === 'string') {
+      setProfilePhoto(`https://localhost:4000${decoded.profilePhoto}`);
+    }
+    if (typeof decoded === 'object' && decoded !== null && 'schoolId' in decoded && typeof decoded.schoolId === 'number') {
+      setSchoolId(decoded.schoolId);
+    }
+    if (typeof decoded === 'object' && decoded !== null && 'roles' in decoded && Array.isArray(decoded.roles)) {
+      setRoles(decoded.roles);
+    }
   };
 
   return (
@@ -72,7 +66,7 @@ export const Login: React.FC = () => {
         onChangeFunction={inputHandler}
         className={"authInputDesign"}
       />
-      <button onClick={logMe}>LOG ME!</button>
+      <MyButton text="Login" onClickFunction={logMe} className="authButtonDesign" />
     </div>
   );
 };

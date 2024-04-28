@@ -29,3 +29,9 @@ export interface MyInputProps {
   onChangeFunction: (value: React.ChangeEvent<HTMLInputElement>) => void,
   className: string,
 }
+
+export interface MyButtonProps {
+  text: string,
+  onClickFunction: (value: React.MouseEvent<HTMLInputElement>) => void,
+  className: string,
+}

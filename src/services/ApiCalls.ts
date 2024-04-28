@@ -1,5 +1,7 @@
 import { DataFetched, LoginData, TokenFetched } from "../interfaces/interfaces";
 
+const rootUrl = "http://localhost:4000/api";  
+
 export const LogUser = async (credentials: LoginData): Promise<TokenFetched> => {
     const options = {
         method: "POST",
@@ -10,7 +12,7 @@ export const LogUser = async (credentials: LoginData): Promise<TokenFetched> => 
       };
       
       try {
-        const response: any = await fetch(`http://localhost:4000/api/auth/login`, options);
+        const response: any = await fetch(`${rootUrl}/auth/login`, options);
     
         const data: TokenFetched = await response.json();
     

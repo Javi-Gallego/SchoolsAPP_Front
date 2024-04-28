@@ -9,18 +9,13 @@
   background-color: var(--primary-color);
 }
 
-.separator {
-  height: 2em;
-  width: 100%;
-}
-
 .fieldEr {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3em;
+  height: 7vh;
   background-color: white;
   color: red;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: bold;
 }
