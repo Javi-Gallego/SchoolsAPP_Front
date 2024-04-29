@@ -15,6 +15,7 @@ export const Login: React.FC = () => {
   const { setSchoolId } = useAuthStore();
   const { setRoles } = useAuthStore();
   const { setSchoolLogo } = useAuthStore();
+  const { setChildren } = useAuthStore();
   const { token } = useAuthStore();
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ export const Login: React.FC = () => {
     const fetched = await LogUser(credentials);
 
     const decoded = decodeToken(fetched.token);
-
+    console.log(decoded);
     setToken(fetched.token);
     if (
       typeof decoded === "object" &&
@@ -82,8 +83,18 @@ export const Login: React.FC = () => {
     ) {
       setSchoolLogo(`http://localhost:4000${decoded.schoolLogo}`);
     }
+    if (
+      typeof decoded === "object" &&
+      decoded !== null &&
+      "children" in decoded &&
+      Array.isArray(decoded.children)
+    ) {
+      setChildren(decoded.children);
+    }
 
-    navigate("/home");
+    if(token !== ""){
+      navigate("/home");
+    }
 
   };
 
