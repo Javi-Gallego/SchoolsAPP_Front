@@ -16,3 +16,19 @@
   width: 80%;
   /* border-bottom: 2px solid var(--secondary-color); */
 }
+.sideLogo {
+  width: 25%;
+}
+.headerLogo {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerLogo img {
+  height: 3em;
+}
+.headerLogo img:hover {
+  cursor: pointer;
+}
+

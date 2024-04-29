@@ -1,0 +1,16 @@
+.logoutDesign {
+  color: rgb(245, 69, 69);
+  font-weight: bold;
+
+  margin: 1em;
+
+  transition: 0.5s;
+}
+
+.logoutDesign:hover {
+  transition: 0.5s;
+  cursor: pointer;
+  transform: scale(1.2);
+
+  text-shadow: 0 0 0.1em white;
+}

@@ -1,16 +1,32 @@
+import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/credentials";
 import { HeaderLink } from "../HeaderLink/HeaderLink";
+import { MyDropDown } from "../MyDropDown/MyDropDown";
 import "./Header.css";
 
 export function Header() {
-  const userName = useAuthStore((state) => state.firstName);
-  const profilePhoto = useAuthStore((state) => state.profilePhoto);
+  const navigate = useNavigate();
+  const token = useAuthStore((state) => state.token);
+  const schoolLogo = useAuthStore((state) => state.schoolLogo);
+
   return (
     <div className="headerDesign">
-        <div>{userName}</div>
-        <img src="http://localhost:4000/uploads/profile/userphoto.png" alt="profile" />
-        <HeaderLink title="Home" destination="/home" />
-        <HeaderLink title="Register" destination="/register" />
+      {token !== "" 
+      ? 
+        <>
+          <div className="sideLogo">
+            <MyDropDown /> 
+          </div>
+          <div className="headerLogo" onClick={() => navigate("/home")}>
+            <img src={schoolLogo} alt="Logo"></img>
+          </div>
+          <div className="sideLogo">
+            <HeaderLink title="Register" destination="/register" />
+          </div>
+        </>
+      : 
+        <></>
+      }
     </div>
   );
 }
