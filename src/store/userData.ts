@@ -1,44 +1,31 @@
 import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 interface userInfo {
-  firstName: string | null;
-  profilePhoto: string | null;
-  schoolId: string | null;
-  roles: string[] | null;
-  // setUser:  (newUser: {  firstName: string,
-  //                       profilePhoto: string,
-  //                       schoolId: string,
-  //                       roles: string[]
-  //                     }
-  //           ) => void;
-  setFirstName: (newFirstName: string) => void;
-  setProfilePhoto: (newProfilePhoto: string) => void;
-  setSchoolId: (newSchoolId: string) => void;
-  setRoles: (newRoles: string[]) => void;
+  id: number;
+  firstName: string;
+  roleName: string;
+  setUserId: (newId: number) => void;
+  setUserFirstName: (newFirstName: string) => void;
+  setUserRoleName: (newRoleName: string) => void;
+  resetUser: () => void;
 }
 
 export const useUserInfoStore = create<userInfo>()(
   persist(
     (set) => ({
+      id: 0,
       firstName: "",
-      profilePhoto: "",
-      schoolId: "",
-      roles: [],
-      // setUser: (newUser: { firstName: string,
-      //                       profilePhoto: string,
-      //                       schoolId: string
-      //                       roles: string[]
-      //                     }) => set({ firstName: newUser.firstName,
-      //                                 profilePhoto: newUser.profilePhoto,
-      //                                 schoolId: newUser.schoolId,
-      //                                 roles: newUser.roles
-      //                      }),
-      setFirstName: (newFirstName: string) => set({ firstName: newFirstName }),
-      setProfilePhoto: (newProfilePhoto: string) =>
-        set({ profilePhoto: newProfilePhoto }),
-      setSchoolId: (newSchoolId: string) => set({ schoolId: newSchoolId }),
-      setRoles: (newRoles: string[]) => set({ roles: newRoles }),
+      roleName: "",
+      setUserId: (newId: number) => set({ id: newId }),
+      setUserFirstName: (newFirstName: string) => set({ firstName: newFirstName }),
+      setUserRoleName: (newRoleName: string) => set({ roleName: newRoleName }),
+      resetUser: () =>
+        set({
+          id: 0,
+          firstName: "",
+          roleName: "",
+        }),
     }),
     {
       name: "userInfo-storage",

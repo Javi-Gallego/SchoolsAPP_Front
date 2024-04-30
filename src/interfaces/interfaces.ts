@@ -1,3 +1,5 @@
+import { Child } from "../store/credentials";
+
 export interface HeaderLinkProps {
   title: string;
   destination: string;
@@ -34,4 +36,14 @@ export interface MyButtonProps {
   text: string,
   onClickFunction: (value: React.MouseEvent<HTMLInputElement>) => void,
   className: string,
+}
+
+export interface decoded{
+  token: string,
+  firstName: string,
+  profilePhoto: string,
+  schoolId: number,
+  roles: string[],
+  schoolLogo: string,
+  children: Child[]
 }

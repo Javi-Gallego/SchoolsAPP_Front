@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface Child{
+export interface Child{
   id: number;
   firstName: string;
   lastName: string;
@@ -11,6 +11,7 @@ interface Child{
 
 interface Auth {
   token: string;
+  id: number;
   firstName: string;
   profilePhoto: string;
   schoolId: number;
@@ -18,6 +19,7 @@ interface Auth {
   schoolLogo: string;
   children: Child[];
   setToken: (newToken: string) => void;
+  setId: (newId: number) => void;
   setFirstName: (newFirstName: string) => void;
   setProfilePhoto: (newProfilePhoto: string) => void;
   setSchoolId: (newSchoolId: number) => void;
@@ -31,6 +33,7 @@ export const useAuthStore = create<Auth>()(
   persist(
     (set) => ({
       token: "",
+      id: 0,
       firstName: "",
       profilePhoto: "",
       schoolId: 0,
@@ -38,6 +41,7 @@ export const useAuthStore = create<Auth>()(
       schoolLogo: "",
       children: [],
       setToken: (newToken: string) => set({ token: newToken }),
+      setId: (newId: number) => set({ id: newId }),
       setFirstName: (newFirstName: string) => set({ firstName: newFirstName }),
       setProfilePhoto: (newProfilePhoto: string) =>
         set({ profilePhoto: newProfilePhoto }),
