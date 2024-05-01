@@ -1,84 +1,101 @@
 .authButtonDesign {
-    width: 17vw;
-    height: 7vh;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    border-radius: 0.3em;
-    font-size: 1rem;
-    font-weight: bold;
-  
-    cursor: pointer;
-    background-color: var(--secondary-color);
-    border: 0.18em solid var(--secondary-color);
-    color: white;
-    transition: 0.3s;
-  }
-  
-  .authButtonDesign:hover {
-    animation: pulse 1s infinite;
-    transition: 0.3s;
-  }
-  .marginTopBottom {
-    margin: 1em 0 0 0;
-  }
-  
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    70% {
-      transform: scale(0.9);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .buttonDesign {
-    width: 12vw;
-    height: 8vh;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    border-radius: 0.3em;
-    font-size: 1rem;
-    font-weight: bold;
-    margin: 1em 0;
-  
-    cursor: pointer;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    border: 0.18em solid var(--secondary-color);
-  }
-  .buttonDesign:hover{
-      background-color: var(--secondary-color);
-      color: var(--primary-color);
-  }
-  .changeRole{
-    height: 1.65em;
-  }
+  width: 17vw;
+  max-width: 18em;
+  height: 7vh;
+  max-height: 3em;
 
-  
-  @media screen and (max-width: 864px) {
-    .buttonDesign {
-      width: 40vw;
-      height: 6vh;
-    }
-    .authButtonDesign {
-      width: 25vw;
-      height: 5vh;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.2em;
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  border: 0.18em solid var(--secondary-color);
+  color: white;
+  transition: 0.3s;
+}
+.loginButtonDesign{
+  width: 17vw;
+  height: 7vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.3em;
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  border: 0.18em solid var(--secondary-color);
+  color: white;
+  transition: 0.3s;
+}
+.loginButtonDesign:hover {
+  animation: pulse 1s infinite;
+  transition: 0.3s;
+}
+.marginTopBottom {
+  margin: 1em 0 0 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
-  
-  @media screen and (max-width: 400px) {
-    .buttonDesign {
-      width: 50vw;
-      height: 6vh;
-    }
+  70% {
+    transform: scale(0.9);
   }
-  
+  100% {
+    transform: scale(1);
+  }
+}
+
+.buttonDesign {
+  width: 12vw;
+  height: 8vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.3em;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1em 0;
+
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: 0.18em solid var(--secondary-color);
+}
+.buttonDesign:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+.changeRole {
+  height: 1.65em;
+}
+
+@media screen and (max-width: 864px) {
+  .buttonDesign {
+    width: 40vw;
+    height: 6vh;
+  }
+  .authButtonDesign {
+    width: 25vw;
+    height: 5vh;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .buttonDesign {
+    width: 50vw;
+    height: 6vh;
+  }
+}

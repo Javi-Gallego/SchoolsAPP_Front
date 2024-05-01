@@ -1,30 +1,42 @@
 .authInputDesign {
-    width: 25vw;
-    height: 7vh;
+    width: 80%;
+    height: 6vh;
     border-radius: 0.2em;
     border: 0.1em solid var(--secondary-color);
     font-size: 1rem;
-  }
+}
+.authInputDesignError {
+  border: 0.1em solid red;
+}
+.authInputDesign:focus {
+  box-shadow: 1px 1px 5px 1px var(--secondary-color);
+  outline: none;
+}
+.loginInputDesign {
+  width: 25vw;
+  height: 7vh;
+  border-radius: 0.2em;
+  border: 0.1em solid var(--secondary-color);
+  font-size: 1rem;
+}
+.loginInputDesignError {
+border: 0.1em solid red;
+}
+.loginInputDesign:focus {
+box-shadow: 1px 1px 5px 1px var(--secondary-color);
+outline: none;
+}
   
-  .authInputDesignError {
-    border: 0.1em solid red;
+@media screen and (min-width: 1281px) {
+  .authInputDesign {
+    width: 30vw;
+    height: 4.5vh;
   }
+}
   
-  .authInputDesign:focus {
-    box-shadow: 1px 1px 5px 1px var(--secondary-color);
-    outline: none;
+@media screen and (max-width: 400px) {
+  .buttonDesign {
+    width: 50vw;
+    height: 6vh;
   }
-  
-  @media screen and (max-width: 864px) {
-    .authInputDesign {
-      width: 50vw;
-      height: 4.5vh;
-    }
-  }
-  
-  @media screen and (max-width: 400px) {
-    .buttonDesign {
-      width: 50vw;
-      height: 6vh;
-    }
-  }
+}

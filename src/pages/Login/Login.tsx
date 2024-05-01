@@ -205,7 +205,7 @@ export const Login: React.FC = () => {
         placeholder={""}
         disabled={false}
         onChangeFunction={inputHandler}
-        className={"authInputDesign marginTopBottom"}
+        className={"loginInputDesign marginTopBottom"}
       />
       <MyInput
         type={"password"}
@@ -214,12 +214,12 @@ export const Login: React.FC = () => {
         placeholder={""}
         disabled={false}
         onChangeFunction={inputHandler}
-        className={"authInputDesign marginTopBottom"}
+        className={"loginInputDesign marginTopBottom"}
       />
       <MyButton
         text="Login"
         onClickFunction={logMe}
-        className="authButtonDesign marginTopBottom"
+        className="loginButtonDesign marginTopBottom"
       />
     </div>
   );

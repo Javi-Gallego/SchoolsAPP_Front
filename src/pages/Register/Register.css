@@ -8,14 +8,63 @@
   align-items: center;
   background-color: var(--primary-color);
 }
-
+.registerOptions{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-color);
+}
+.registerTitle{
+  margin: 0.5em 0 0 0;
+}
 .fieldEr {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 7vh;
-  background-color: white;
+  height: 4vh;
+  background-color: transparent;
   color: red;
   font-size: 0.8rem;
   font-weight: bold;
+}
+.registroEstudiante{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: auto;
+  background-color: var(--primary-color);
+}
+.individualRegister{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 99vw;
+  min-width: 20em;
+  height: auto;
+  background-color: var(--primary-color);
+}
+@media screen and (min-width: 640px) {
+  .individualRegister{
+    width: 49vw;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .individualRegister{
+    width: 32vw;
+  }
+}
+@media screen and (min-width: 1281px) {
+  .fieldEr {
+    height: 3vh;
+    font-size: 0.8rem;
+  }
 }
