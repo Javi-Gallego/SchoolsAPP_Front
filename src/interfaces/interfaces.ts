@@ -22,7 +22,12 @@ export interface LoginData {
   email: string;
   password: string;
 }
-
+export interface Course {
+  name: string;
+  stageId: number;
+  year: string;
+  tutorId: number;
+}
 export interface GetStage {
   schoolId: number;
 }
