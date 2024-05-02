@@ -128,7 +128,6 @@ export const deleteStage = async (token:string, stage: number): Promise<DataFetc
   };
 
   try {
-    console.log(`${rootUrl}/stages/${stage}`)
     const response = await fetch(`${rootUrl}/stages/${stage}`, options);
 
     const data = await response.json();

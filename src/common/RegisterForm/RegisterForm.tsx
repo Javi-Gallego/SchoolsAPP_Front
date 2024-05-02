@@ -1,28 +1,15 @@
 import "./RegisterForm.css";
 import { DateInput } from "@mantine/dates";
 import { MyInput } from "../MyInput/MyInput";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { validate } from "../../utils/functions";
 import { RegisterFormProps } from "../../interfaces/interfaces";
 import { useAuthStore } from "../../store/credentials";
 
-export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, roleId }) => {
+export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, roleId, user}) => {
   const [value, setValue] = useState<Date>(new Date());
   const [msgError, setMsgError] = useState("");
   const { schoolId } = useAuthStore();
-
-  const [userData, setUserData] = useState({
-    firstName: "",
-    lastName: "",
-    secondLastName: "",
-    email: "",
-    password: "",
-    phone: "",
-    address: "",
-    birthdate: new Date(),
-    schoolId: schoolId,
-    roleId: roleId,
-  });
 
   const [userError, setUserError] = useState({
     firstNameError: "",
@@ -34,21 +21,17 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
     addressError: "",
   });
 
-  useEffect(() => {
-    setUserData((fields) => ({
-        ...fields,
-        birthdate: value,
-      }));
-      onChange(userData);
-  }, [value]);
+  const handleDateChange = (dateValue: Date | null) => {
+    if (!dateValue) {
+      dateValue = new Date();
+    } else{
+      setValue(dateValue);
+    }
+    onChange("birthdate", dateValue.toISOString());
+  };
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
-    
-    setUserData((fields) => ({
-      ...fields,
-      [e.target.name]: newValue,
-    }));
+    onChange(e.target.name, e.target.value);
 
     checkError(e);
   };
@@ -61,17 +44,6 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
       [e.target.name + "Error"]: error,
     }));
 
-    onChange(userData);
-    return userData;
-  };
-
-  const handleDateChange = (dateValue: Date | null) => {
-    console.log("dateValue", dateValue)
-    if (dateValue) {
-      setValue(dateValue);
-    } else {
-      setValue(new Date());
-    }
   };
 
   return (
@@ -81,7 +53,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
         type="text"
         name="firstName"
         placeholder="Nombre"
-        value={userData.firstName || ""}
+        value={user.firstName || ""}
         disabled={false}
         onChangeFunction={inputHandler}
         className={`authInputDesign ${
@@ -93,7 +65,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
         type="text"
         name="lastName"
         placeholder="Primer apellido"
-        value={userData.lastName || ""}
+        value={user.lastName || ""}
         disabled={false}
         onChangeFunction={inputHandler}
         className={`authInputDesign ${
@@ -105,7 +77,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
         type="text"
         name="secondLastName"
         placeholder="Segundo apellido"
-        value={userData.secondLastName || ""}
+        value={user.secondLastName || ""}
         disabled={false}
         onChangeFunction={inputHandler}
         className={`authInputDesign ${
@@ -117,7 +89,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
         type="text"
         name="address"
         placeholder="Dirección"
-        value={userData.address || ""}
+        value={user.address || ""}
         disabled={false}
         onChangeFunction={inputHandler}
         className={`authInputDesign ${
@@ -129,7 +101,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
         type="tel"
         name="phone"
         placeholder="Teléfono"
-        value={userData.phone || ""}
+        value={user.phone || ""}
         disabled={false}
         onChangeFunction={inputHandler}
         className={`authInputDesign ${
@@ -141,7 +113,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
         type="email"
         name="email"
         placeholder="email"
-        value={userData.email || ""}
+        value={user.email || ""}
         disabled={false}
         onChangeFunction={inputHandler}
         className={`authInputDesign ${
@@ -153,7 +125,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
         type="password"
         name="password"
         placeholder="password"
-        value={userData.password || ""}
+        value={user.password || ""}
         disabled={false}
         onChangeFunction={inputHandler}
         className={`authInputDesign ${

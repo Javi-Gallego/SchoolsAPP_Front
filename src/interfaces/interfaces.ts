@@ -70,12 +70,15 @@ export interface userRegister {
   address: string;
   birthdate: Date;
   schoolId: number;
+  roleId: number;
 }
 
 export interface RegisterFormProps {
   title: string;
-  onChange: (value: userRegister) => void;
+  // onChange: (value: userRegister) => void;
+  onChange: (name: string, value: string) => void;
   roleId: number;
+  user: userRegister;
 }
 
 export interface decoded {
