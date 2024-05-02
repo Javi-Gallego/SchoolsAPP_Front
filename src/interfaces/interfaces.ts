@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Child } from "../store/credentials";
 
 export interface HeaderLinkProps {
@@ -36,6 +37,12 @@ export interface MyButtonProps {
   text: string;
   onClickFunction: (value: React.MouseEvent<HTMLInputElement>) => void;
   className: string;
+}
+
+export interface MyCardProps {
+  image: ReactNode;
+  title: string;
+  url: string;
 }
 
 export interface userRegister {

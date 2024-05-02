@@ -1,0 +1,48 @@
+.myCardDesign {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 42%;
+  display: flex;
+  margin: 0.2em;
+  flex-direction: column;
+  justify-content: center;
+  aspect-ratio: 1.5/1;
+  border: 0.1em var(--secondary-color) solid;
+  cursor: pointer;
+}
+
+@media (min-width: 551px) {
+  .myCardDesign {
+    width: 31%;
+  }
+}
+@media (min-width: 786px) {
+  .myCardDesign {
+    width: 24%;
+  }
+}
+
+@media (min-width: 1281px) {
+  .myCardDesign {
+    width: 19%;
+  }
+}
+
+.imageCard {
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.titleCard {
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+.imageCardDesign {
+  height: auto;
+  width: 50%;
+}
