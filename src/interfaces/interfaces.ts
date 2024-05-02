@@ -23,6 +23,21 @@ export interface LoginData {
   password: string;
 }
 
+export interface GetStage {
+  schoolId: number;
+}
+
+export interface Stage {
+  id: number;
+  name: string;
+  schoolId: number;
+}
+
+export interface setStage {
+  name: string;
+  schoolId: number;
+}
+
 export interface MyInputProps {
   type: string;
   name: string;

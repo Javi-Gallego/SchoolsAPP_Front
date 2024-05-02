@@ -37,7 +37,7 @@
   transition: 0.3s;
 }
 .loginButtonDesign:hover {
-  animation: pulse 1s infinite;
+  /* animation: pulse 1s infinite; */
   transition: 0.3s;
 }
 .marginTopBottom {
