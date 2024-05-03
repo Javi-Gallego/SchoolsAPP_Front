@@ -54,9 +54,9 @@ export const Stages: React.FC = () => {
     }
   };
 
-  const eraseStage = async (index: number): Promise<void> => {
+  const eraseStage = async (stageid: number): Promise<void> => {
     try {
-      const stageId = (index + 1);
+      const stageId = stageid;
       await deleteStage(token, stageId);
       fetchStages();
     } catch (error) {
@@ -74,7 +74,7 @@ export const Stages: React.FC = () => {
             return (
               <div key={index} className="stageCard">
                 <div className="stageTitle">{stage.name}</div>
-                <div className="trash" onClick={() => eraseStage(index)}>
+                <div className="trash" onClick={() => eraseStage(stage.id)}>
                   <SVGTrash color="var(--tertiary-color)" />
                 </div>
               </div>
@@ -92,13 +92,13 @@ export const Stages: React.FC = () => {
               type={"name"}
               name={"stageName"}
               value={stageName.name || ""}
-              placeholder={""}
+              placeholder={"Nombre de la nueva etapa"}
               disabled={false}
               onChangeFunction={inputHandler}
               className={"loginInputDesign marginTopBottom"}
             />
             <MyButton
-              text="Login"
+              text="Crear etapa"
               onClickFunction={sendStage}
               className="loginButtonDesign marginTopBottom"
             />

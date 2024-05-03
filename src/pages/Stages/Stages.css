@@ -12,9 +12,9 @@
 .stageCard {
   background-color: var(--primary-color);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: 42%;
+  width: 55%;
   display: flex;
-  margin: 0.3em;
+  margin: 0.5em;
   flex-direction: row;
   justify-content: space-between;
   border: 0.1em var(--secondary-color) solid;

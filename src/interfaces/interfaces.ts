@@ -23,11 +23,31 @@ export interface LoginData {
   password: string;
 }
 export interface Course {
+  id: number;
   name: string;
   stageId: number;
   year: string;
   tutorId: number;
 }
+
+export interface SetCourse {
+  name: string;
+  stageId: number;
+  year: string;
+  tutorId?: number;
+}
+
+export interface Subject {
+  id: number;
+  name: string;
+  schoolId: number;
+}
+
+export interface SetSubject {
+  name: string;
+  schoolId: number;
+}
+
 export interface GetStage {
   schoolId: number;
 }

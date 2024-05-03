@@ -11,8 +11,8 @@ export const Home: React.FC = () => {
     <>
       <div className="homeDesign">
         <MyCard image={<SVGStages color="var(--secondary-color)" />} title="Etapas" url="/stages" />
-        <MyCard image={<SVGCourses color="var(--secondary-color)" />} title="Cursos" url="/stages"/>
-        <MyCard image={<SVGSubjects color="var(--secondary-color)" />} title="Asignaturas" url="/stages"/>
+        <MyCard image={<SVGCourses color="var(--secondary-color)" />} title="Cursos" url="/courses"/>
+        <MyCard image={<SVGSubjects color="var(--secondary-color)" />} title="Asignaturas" url="/subjects"/>
         <MyCard image={<SVGMessages color="var(--secondary-color)" />} title="Mensajes" url="/stages"/>
         <MyCard image={<SVGCalendar color="var(--secondary-color)" />} title="Calendario" url="/stages"/>
         <MyCard image={<SVGStages color="var(--secondary-color)" />} title="Etapas" url="/stages"/>

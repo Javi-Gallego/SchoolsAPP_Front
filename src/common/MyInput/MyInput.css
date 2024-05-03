@@ -26,6 +26,21 @@ border: 0.1em solid red;
 box-shadow: 1px 1px 5px 1px var(--secondary-color);
 outline: none;
 }
+.modalInputDesign {
+  width: 80%;
+  height: 7vh;
+  border-radius: 0.2em;
+  border: 0.1em solid var(--secondary-color);
+  font-size: 1rem;
+}
+.littleInputDesign {
+  margin: 0;
+  width: 20%;
+  height: 7vh;
+  border-radius: 0.2em;
+  border: 0.1em solid var(--secondary-color);
+  font-size: 1rem;
+}
   
 @media screen and (min-width: 1281px) {
   .authInputDesign {

@@ -33,11 +33,29 @@
   cursor: pointer;
   background-color: var(--secondary-color);
   border: 0.18em solid var(--secondary-color);
-  color: white;
+  color: var(--tertiary-color);
   transition: 0.3s;
 }
 .loginButtonDesign:hover {
   /* animation: pulse 1s infinite; */
+  transition: 0.3s;
+}
+.modalButtonDesign{
+  width: 50%;
+  height: 7vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.3em;
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+  background-color: var(--secondary-color);
+  border: 0.18em solid var(--secondary-color);
+  color: var(--tertiary-color);
   transition: 0.3s;
 }
 .marginTopBottom {
