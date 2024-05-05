@@ -461,3 +461,29 @@ export const getCourseStudents = async (token:string, course: number): Promise<D
     return answer;
   }
 };
+
+export const getEvents = async (token:string, query: string): Promise<DataFetched> => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/events/${query}`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};

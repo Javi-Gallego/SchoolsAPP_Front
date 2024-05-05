@@ -120,3 +120,24 @@ export interface decoded {
   schoolLogo: string;
   children: Child[];
 }
+
+export interface Event {
+  title: string;
+  start: Date;
+  end: Date;
+  backgroundColor: string;
+  description: string;
+}
+
+export interface MyEvent {
+  title: string;
+  start: string;
+  end: string;
+  extendedProps: {
+    description: string;
+    publisher: string;
+    stage: string;
+    course: string;
+  };
+  backgroundColor: string;
+}

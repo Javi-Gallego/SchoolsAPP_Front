@@ -1,0 +1,12 @@
+.eventsDesign {
+  height: auto;
+  min-height: 90vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+  font-weight: bold;
+}

@@ -1,0 +1,82 @@
+.calendarDesign {
+  height: auto;
+  min-height: 90vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+}
+.containerCalendar {
+  width: 90%;
+  height: 80vh;
+}
+.showEvent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--primary-color);
+}
+.addEvent {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: var(--primary-color);
+}
+.eventTitle {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border: 0.1em var(--secondary-color) solid;
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.eventCard {
+  width: 90%;
+  display: flex;
+  margin: 0.3em;
+  flex-direction: row;
+  justify-content: center;
+}
+.calendarFilters {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+}
+.filterTitle{
+  font-weight: bold;
+}
+.filterRow {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.filterSelect{
+  width: 35%;
+}
+@media (min-width: 468px) {
+  .containerCalendar {
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .containerCalendar {
+    width: 70%;
+  }
+}

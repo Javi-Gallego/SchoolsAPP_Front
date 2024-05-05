@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modalBackground {
@@ -16,6 +17,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 .modalContent {
@@ -28,4 +30,6 @@
   padding: 1.25rem;
   width: 80%;
   max-width: 32rem;
+  border-radius: 0.5rem;
+  z-index: 1001;
 }
