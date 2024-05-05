@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import "./Courses.css";
 import {
   createCourse,
-  createStage,
   deleteCourse,
-  deleteStage,
   getCourses,
   getStages,
   getUsers,
@@ -22,10 +20,19 @@ import { MyButton } from "../../common/MyButton/MyButton";
 import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
 import { NativeSelect } from "@mantine/core";
 import { Modal } from "../../common/Modal/Modal";
+import { useDetailCourseStore } from "../../store/detailCourse";
+import { useNavigate } from "react-router-dom";
 
 export const Courses: React.FC = () => {
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
+  const { setCourseId } = useDetailCourseStore();
+  const { setCourseName } = useDetailCourseStore();
+  const { setCourseStageId } = useDetailCourseStore();
+  const { setStageName } = useDetailCourseStore();
+  const { setYear } = useDetailCourseStore();
+  const { setTutorId } = useDetailCourseStore();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [firstFetch, setFirstFetch] = useState<boolean>(false);
   const [stages, setStages] = useState<Stage[]>([]);
@@ -117,6 +124,16 @@ export const Courses: React.FC = () => {
     setTeachersNames(names);
   };
 
+  const detailInfo = (course: Course, stageName: string) => {
+    setCourseId(course.id);
+    setCourseName(course.name);
+    setCourseStageId(course.stageId);
+    setStageName(stageName);
+    setYear(course.year);
+    setTutorId(course.tutorId);
+    navigate("/detailCourse")
+  }
+
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
@@ -165,7 +182,7 @@ export const Courses: React.FC = () => {
                       return (
                         <div
                           key={`course${stageindex}${courseindex}`}
-                          className="courseCard"
+                          className="courseCard" onClick={()=>detailInfo(course, stage.name)}
                         >
                           <div className="courseTitle">{course.name}</div>
                           <div
@@ -237,7 +254,7 @@ export const Courses: React.FC = () => {
           <MyButton
             text="Añadir curso"
             onClickFunction={sendCourse}
-            className="modalButtonDesign marginTopBottom"
+            className="button modalButtonDesign marginTopBottom"
           />
         </Modal>
       </div>

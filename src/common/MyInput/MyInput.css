@@ -1,9 +1,10 @@
 .authInputDesign {
     width: 80%;
     height: 6vh;
+    font-size: 1rem;
     border-radius: 0.2em;
     border: 0.1em solid var(--secondary-color);
-    font-size: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .authInputDesignError {
   border: 0.1em solid red;
@@ -15,9 +16,10 @@
 .loginInputDesign {
   width: 50vw;
   height: 7vh;
+  font-size: 1rem;
   border-radius: 0.2em;
   border: 0.1em solid var(--secondary-color);
-  font-size: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .loginInputDesignError {
 border: 0.1em solid red;
@@ -29,9 +31,10 @@ outline: none;
 .modalInputDesign {
   width: 80%;
   height: 7vh;
+  font-size: 1rem;
   border-radius: 0.2em;
   border: 0.1em solid var(--secondary-color);
-  font-size: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .littleInputDesign {
   margin: 0;
@@ -52,12 +55,5 @@ outline: none;
 @media screen and (min-width: 640px) {
   .loginInputDesign {
     width: 40vw;
-  }
-}
-  
-@media screen and (max-width: 400px) {
-  .buttonDesign {
-    width: 50vw;
-    height: 6vh;
   }
 }

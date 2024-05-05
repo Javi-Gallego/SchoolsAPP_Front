@@ -1,4 +1,4 @@
-import { DataFetched, GetStage, LoginData, SetCourse, SetSubject, TokenFetched, setStage } from "../interfaces/interfaces";
+import { Course, DataFetched, GetStage, LoginData, SetCourse, SetCourseSubject, SetSubject, TokenFetched, setStage } from "../interfaces/interfaces";
 
 const rootUrl = "http://localhost:4000/api";  
 
@@ -223,6 +223,33 @@ export const createCourse = async (token:string, course: SetCourse): Promise<Dat
   }
 };
 
+export const updateCourse = async (token:string, course: Course): Promise<DataFetched> => {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(course),
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/courses/${course.id}`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
 export const deleteCourse = async (token:string, course: number): Promise<DataFetched> => {
   const options = {
     method: "DELETE",
@@ -313,6 +340,113 @@ export const deleteSubject = async (token:string, subject: number): Promise<Data
 
   try {
     const response = await fetch(`${rootUrl}/subjects/${subject}`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const getCourseSubjects = async (token:string, course: number): Promise<DataFetched> => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/coursesubjects/${course}`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const createCourseSubject = async (token:string, courseSubject: any): Promise<DataFetched> => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(courseSubject),
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/coursesubjects`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const deleteCourseSubject = async (token:string, courseSubject: SetCourseSubject): Promise<DataFetched> => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(courseSubject),
+  };
+
+  try {
+    console.log(`${rootUrl}/coursesubjects/${courseSubject}`)
+    const response = await fetch(`${rootUrl}/coursesubjects/${courseSubject}`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const getCourseStudents = async (token:string, course: number): Promise<DataFetched> => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/courseusers/${course}`, options);
 
     const data = await response.json();
 

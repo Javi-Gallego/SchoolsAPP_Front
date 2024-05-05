@@ -37,6 +37,11 @@ export interface SetCourse {
   tutorId?: number;
 }
 
+export interface SetCourseSubject {
+  courseId: number;
+  subjectId: number;
+}
+
 export interface Subject {
   id: number;
   name: string;

@@ -7,8 +7,10 @@ import { SVGAdd } from "../../common/SVGAdd/SVGAdd";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
+import { Modal } from "../../common/Modal/Modal";
 
 export const Stages: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [stages, setStages] = useState<Stage[]>([]);
   const [firstFetch, setFirstFetch] = useState<boolean>(false);
   const token = useAuthStore((state) => state.token);
@@ -39,19 +41,17 @@ export const Stages: React.FC = () => {
   };
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setStageName(((prevState) => ({
+    setStageName((prevState) => ({
       ...prevState,
       name: e.target.value,
-    })));
+    }));
   };
 
   const sendStage = async (): Promise<void> => {
     try {
       await createStage(token, stageName);
       fetchStages();
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 
   const eraseStage = async (stageid: number): Promise<void> => {
@@ -59,9 +59,11 @@ export const Stages: React.FC = () => {
       const stageId = stageid;
       await deleteStage(token, stageId);
       fetchStages();
-    } catch (error) {
-      
-    }
+    } catch (error) {}
+  };
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -83,10 +85,10 @@ export const Stages: React.FC = () => {
         ) : (
           <div>"No stages found"</div>
         )}
-        <div className="addStage" onClick={toggleAddStage}>
+        <div className="addStage" onClick={toggleModal}>
           <SVGAdd color="var(--tertiary-color)" />
         </div>
-        {addStage && (
+        <Modal isOpen={isOpen} toggleModal={toggleModal}>
           <div className="addStage">
             <MyInput
               type={"name"}
@@ -100,10 +102,10 @@ export const Stages: React.FC = () => {
             <MyButton
               text="Crear etapa"
               onClickFunction={sendStage}
-              className="loginButtonDesign marginTopBottom"
+              className="button loginButtonDesign marginTopBottom"
             />
           </div>
-        )}
+        </Modal>
       </div>
     </>
   );

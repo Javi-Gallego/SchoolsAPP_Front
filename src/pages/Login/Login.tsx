@@ -156,7 +156,7 @@ export const Login: React.FC = () => {
       <MyButton
         text="Login"
         onClickFunction={logMe}
-        className="loginButtonDesign marginTopBottom"
+        className="button loginButtonDesign marginTopBottom"
       />
     </div>
   );

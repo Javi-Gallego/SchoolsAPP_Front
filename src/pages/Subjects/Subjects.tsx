@@ -96,7 +96,7 @@ export const Subjects: React.FC = () => {
             <MyButton
               text="Crear asignatura"
               onClickFunction={sendSubject}
-              className="loginButtonDesign marginTopBottom"
+              className="button loginButtonDesign marginTopBottom"
             />
           </div>
         )}

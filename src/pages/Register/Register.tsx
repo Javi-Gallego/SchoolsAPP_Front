@@ -143,7 +143,7 @@ export const Register: React.FC = () => {
           </div>
         </div>
         )}
-        <MyButton text="Registrar" onClickFunction={handleRegister} className="authButtonDesign" />
+        <MyButton text="Registrar" onClickFunction={handleRegister} className="button authButtonDesign" />
     </div>
   );
 };
