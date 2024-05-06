@@ -129,6 +129,18 @@ export interface Event {
   description: string;
 }
 
+export interface setEvent {
+  title: string;
+  start: Date;
+  end: Date;
+  description: string;
+  publisherId: number;
+  stageId: number;
+  courseId: number;
+  schoolId: number;
+  backgroundColor: string;
+}
+
 export interface MyEvent {
   title: string;
   start: string;

@@ -52,7 +52,7 @@ export const Calendar = () => {
 
   const fetchEvents = async () => {
     try {
-      let query = `?schoolId=${schoolId}`;
+      let query = `?schoolId=${schoolId}&limitDate=false`;
 
       const stage = stages.find((stage) => stage.name === stageType);
       const stageId = stage ? stage.id : null;
@@ -67,7 +67,7 @@ export const Calendar = () => {
       }
 
       const newEvents = await getEvents(token, query);
-      console.log("newEvents: ", newEvents);
+
       const filteredEvents = newEvents.data.map((event) => ({
         title: event.title,
         start: new Date(event.start).toISOString().slice(0, 10),
@@ -100,7 +100,7 @@ export const Calendar = () => {
     setEventInfo(event);
     toggleModal();
   };
-  console.log("stages: ", stages);
+
   return (
     <div className="calendarDesign">
       {roleName === "teacher" ||
@@ -141,24 +141,24 @@ export const Calendar = () => {
           contentHeight="77vh"
         />
         <Modal isOpen={isOpen} toggleModal={toggleModal}>
-          <div className="showEvent">
+          <div className="showEventCalendar">
             {eventInfo && (
-              <div className="addEvent">
-                <div className="eventTitle">
+              <div className="eventCalendar">
+                <div className="calendarEventTitle">
                   {eventInfo.title}
                   {": "}
                 </div>
-                <div className="eventCard">
+                <div className="calendarEventCard">
                   {eventInfo.extendedProps.description}
                 </div>
-                <div className="eventTitle">Etapa:</div>
-                <div className="eventCard">{eventInfo.extendedProps.stage}</div>
-                <div className="eventTitle">Curso:</div>
-                <div className="eventCard">
+                <div className="calendarEventTitle">Etapa:</div>
+                <div className="calendarEventCard">{eventInfo.extendedProps.stage}</div>
+                <div className="calendarEventTitle">Curso:</div>
+                <div className="calendarEventCard">
                   {eventInfo.extendedProps.course}
                 </div>
-                <div className="eventTitle">Publicado por:</div>
-                <div className="eventCard">
+                <div className="calendarEventTitle">Publicado por:</div>
+                <div className="calendarEventCard">
                   {eventInfo.extendedProps.publisher}
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import { Course, DataFetched, GetStage, LoginData, SetCourse, SetCourseSubject, SetSubject, TokenFetched, setStage } from "../interfaces/interfaces";
+import { Course, DataFetched, GetStage, LoginData, SetCourse, SetCourseSubject, SetSubject, TokenFetched, setEvent, setStage } from "../interfaces/interfaces";
 
 const rootUrl = "http://localhost:4000/api";  
 
@@ -473,6 +473,33 @@ export const getEvents = async (token:string, query: string): Promise<DataFetche
 
   try {
     const response = await fetch(`${rootUrl}/events/${query}`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const createEvent = async (token:string, event: setEvent): Promise<DataFetched> => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(event),
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/events`, options);
 
     const data = await response.json();
 

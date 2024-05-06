@@ -17,14 +17,14 @@
   align-items: center;
 }
 .courseCard {
-  background-color: var(--primary-color);
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   width: 40%;
   display: flex;
   margin: 0.3em;
   flex-direction: row;
   justify-content: space-between;
   border: 0.1em var(--secondary-color) solid;
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .courseTitle {
   width: 100%;

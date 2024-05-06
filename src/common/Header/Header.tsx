@@ -21,7 +21,6 @@ export function Header() {
             <img src={schoolLogo} alt="Logo"></img>
           </div>
           <div className="sideLogo">
-            <HeaderLink title="Register" destination="/register" />
           </div>
         </>
       : 

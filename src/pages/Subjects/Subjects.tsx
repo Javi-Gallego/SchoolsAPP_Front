@@ -79,7 +79,7 @@ export const Subjects: React.FC = () => {
         ) : (
           <div>"No stages found"</div>
         )}
-        <div className="addSubject" onClick={toggleAddSubject}>
+        <div className="addButton" onClick={toggleAddSubject}>
           <SVGAdd color="var(--tertiary-color)" />
         </div>
         {addSubject && (

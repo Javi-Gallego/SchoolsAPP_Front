@@ -13,7 +13,7 @@
   width: 90%;
   height: 80vh;
 }
-.showEvent {
+.showEventCalendar {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   cursor: pointer;
   background-color: var(--primary-color);
 }
-.addEvent {
+.eventCalendar {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -31,7 +31,7 @@
   cursor: pointer;
   background-color: var(--primary-color);
 }
-.eventTitle {
+.calendarEventTitle {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@
   background-color: var(--primary-color);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-.eventCard {
+.calendarEventCard {
   width: 90%;
   display: flex;
   margin: 0.3em;

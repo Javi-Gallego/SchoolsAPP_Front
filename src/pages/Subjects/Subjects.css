@@ -27,11 +27,17 @@
   align-items: center;
   font-weight: bold;
 }
-.addSubject {
-  width: 5%;
+.addButton {
+  width: 15%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+@media screen and (min-width: 640px) {
+  .addButton {
+      width: 5%;
+  }
 }
