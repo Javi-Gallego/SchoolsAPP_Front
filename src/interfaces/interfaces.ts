@@ -153,3 +153,10 @@ export interface MyEvent {
   };
   backgroundColor: string;
 }
+
+export interface Conversation {
+  authorName: string;
+  messages: any[];
+  receiverName: string;
+  unseenCount: number;
+}

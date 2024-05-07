@@ -21,7 +21,7 @@ export const Home: React.FC = () => {
         <MyCard image={<SVGSubjects color="var(--secondary-color)" />} title="Asignaturas" url="/subjects"/>
         <MyCard image={<SVGEvents color="var(--secondary-color)" />} title="Eventos" url="/events"/>
         <MyCard image={<SVGCalendar color="var(--secondary-color)" />} title="Calendario" url="/calendar"/>
-        <MyCard image={<SVGMessages color="var(--secondary-color)" />} title="Mensajes" url="/stages"/>
+        <MyCard image={<SVGMessages color="var(--secondary-color)" />} title="Mensajes" url="/messages"/>
         <MyCard image={<SVGNotifications color="var(--secondary-color)" />} title="Notificaciones" url="/stages"/>
         <div className="logoHome">
           <div className="title">APP School</div>

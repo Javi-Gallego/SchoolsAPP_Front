@@ -67,6 +67,9 @@ export const Events: React.FC = () => {
       case "Reunión":
         newbackgroundColor = "rgb(35, 60, 105)";
         break;
+      case "Excursión":
+        newbackgroundColor = "rgb(158, 157, 107)";
+        break;
       case "Fiesta":
         newbackgroundColor = "rgb(248, 149, 56)";
         break;
@@ -236,7 +239,7 @@ export const Events: React.FC = () => {
             onChange={(event) =>
               eventHandler(event.currentTarget.value, event.currentTarget.name)
             }
-            data={["", "Examen", "Trabajo", "Reunión", "Fiesta", "Vacaciones"]}
+            data={["", "Examen", "Trabajo", "Reunión", "Excursión", "Fiesta", "Vacaciones"]}
           />
         </div>
         <div className="stageCourseModal">

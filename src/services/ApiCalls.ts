@@ -514,3 +514,29 @@ export const createEvent = async (token:string, event: setEvent): Promise<DataFe
     return answer;
   }
 };
+
+export const getMessages = async (token:string): Promise<DataFetched> => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/messages/`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};

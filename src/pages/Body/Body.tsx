@@ -8,6 +8,8 @@ import { Subjects } from "../Subjects/Subjects";
 import { DetailCourse } from "../DetailCourse/DetailCourse";
 import { Calendar } from "../Calendar/Calendar";
 import { Events } from "../Event/Event";
+import { Messages } from "../Messages/Messages";
+import { DetailConversation } from "../DetailConversation/DetailConversation";
 
 export const Body = () => {
   return (
@@ -22,6 +24,8 @@ export const Body = () => {
       <Route path="/calendar" element={<Calendar />} />
       <Route path="/events" element={<Events />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/messages" element={<Messages />} />
+      <Route path="/detailconversation" element={<DetailConversation />} />
       <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   );
