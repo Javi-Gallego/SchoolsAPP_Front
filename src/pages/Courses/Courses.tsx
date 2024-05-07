@@ -22,10 +22,12 @@ import { NativeSelect } from "@mantine/core";
 import { Modal } from "../../common/Modal/Modal";
 import { useDetailCourseStore } from "../../store/detailCourse";
 import { useNavigate } from "react-router-dom";
+import { useUserInfoStore } from "../../store/userData";
 
 export const Courses: React.FC = () => {
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
+  const roleName = useUserInfoStore((state) => state.roleName);
   const { setCourseId } = useDetailCourseStore();
   const { setCourseName } = useDetailCourseStore();
   const { setCourseStageId } = useDetailCourseStore();
@@ -50,6 +52,9 @@ export const Courses: React.FC = () => {
   });
 
   useEffect(() => {
+    if (!token || roleName !== "admin") {
+      navigate("/home");
+    }
     if (!firstFetch) {
       fetchStages();
       fetchCourses();

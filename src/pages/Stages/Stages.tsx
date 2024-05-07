@@ -8,8 +8,12 @@ import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
 import { Modal } from "../../common/Modal/Modal";
+import { useNavigate } from "react-router-dom";
+import { useUserInfoStore } from "../../store/userData";
 
 export const Stages: React.FC = () => {
+  const navigate = useNavigate();
+  const roleName = useUserInfoStore((state) => state.roleName);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [stages, setStages] = useState<Stage[]>([]);
   const [firstFetch, setFirstFetch] = useState<boolean>(false);
@@ -22,6 +26,12 @@ export const Stages: React.FC = () => {
   });
 
   useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+    if(roleName !== "admin" && roleName !== "super_admin"){
+      navigate("/home");
+    }
     if (!firstFetch) {
       fetchStages();
       setFirstFetch(true);

@@ -1,4 +1,4 @@
-import { Course, DataFetched, GetStage, LoginData, SetCourse, SetCourseSubject, SetSubject, TokenFetched, setEvent, setStage } from "../interfaces/interfaces";
+import { Course, DataFetched, LoginData, Message, SetCourse, SetCourseSubject, SetSubject, TokenFetched, seenMessages, setEvent, setStage } from "../interfaces/interfaces";
 
 const rootUrl = "http://localhost:4000/api";  
 
@@ -526,6 +526,60 @@ export const getMessages = async (token:string): Promise<DataFetched> => {
 
   try {
     const response = await fetch(`${rootUrl}/messages/`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const createMessage = async (token:string, message: Message): Promise<DataFetched> => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(message),
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/messages`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const updateSeenMessages = async (token:string, message: seenMessages): Promise<DataFetched> => {
+  const options = {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(message),
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/messages`, options);
 
     const data = await response.json();
 

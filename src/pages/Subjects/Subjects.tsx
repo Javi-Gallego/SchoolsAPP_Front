@@ -7,8 +7,12 @@ import { SVGAdd } from "../../common/SVGAdd/SVGAdd";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
+import { useNavigate } from "react-router-dom";
+import { useUserInfoStore } from "../../store/userData";
 
 export const Subjects: React.FC = () => {
+  const navigate = useNavigate();
+  const roleName = useUserInfoStore((state) => state.roleName);
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
   const [subjects, setSubjects] = useState<Subject[]>([]);
@@ -20,6 +24,12 @@ export const Subjects: React.FC = () => {
   });
 
   useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+    if (roleName !== "admin" && roleName !== "super_admin") {
+      navigate("/home");
+    }
     if (!firstFetch) {
       fetchSubjects();
       setFirstFetch(true);

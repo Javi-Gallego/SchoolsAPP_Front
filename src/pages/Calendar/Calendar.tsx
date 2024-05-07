@@ -9,8 +9,10 @@ import { getCourses, getEvents, getStages } from "../../services/ApiCalls";
 import { useAuthStore } from "../../store/credentials";
 import { NativeSelect } from "@mantine/core";
 import { useUserInfoStore } from "../../store/userData";
+import { useNavigate } from "react-router-dom";
 
 export const Calendar = () => {
+  const navigate = useNavigate();
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
   const roleName = useUserInfoStore((state) => state.roleName);
@@ -24,6 +26,9 @@ export const Calendar = () => {
   const [courseType, setCourseType] = useState<string>("");
 
   useEffect(() => {
+    if(!token){
+      navigate("/login");
+    }
     if (!firstFetch) {
       fetchEvents();
       fetchStages();

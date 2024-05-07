@@ -62,6 +62,9 @@ export const DetailCourse: React.FC = () => {
   });
 
   useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
     if (!firstFetch) {
       fetchCourseSubjects();
       fetchSchoolSubjects();

@@ -1,17 +1,19 @@
 import "./Register.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { NativeSelect } from '@mantine/core';
+import { NativeSelect } from "@mantine/core";
 import "@mantine/core/styles.css";
-import '@mantine/dates/styles.css';
+import "@mantine/dates/styles.css";
 import { RegisterForm } from "../../common/RegisterForm/RegisterForm";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { RegisterUser } from "../../services/ApiCalls";
 import { useAuthStore } from "../../store/credentials";
 import { userRegister } from "../../interfaces/interfaces";
+import { useUserInfoStore } from "../../store/userData";
 
 export const Register: React.FC = () => {
   const navigate = useNavigate();
+  const roleName = useUserInfoStore((state) => state.roleName);
   const [value, setValue] = useState<Date | null>(null);
   const [userType, setUserType] = useState<string>("");
   const [msgError, setMsgError] = useState("");
@@ -58,6 +60,15 @@ export const Register: React.FC = () => {
   });
 
   useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+    if (roleName !== "admin" && roleName !== "super_admin") {
+      navigate("/home");
+    }
+  }, []);
+
+  useEffect(() => {
     let newRol: number;
     if (userType === "Administrador") {
       newRol = 2;
@@ -75,17 +86,17 @@ export const Register: React.FC = () => {
     console.log("Rol", newRol);
 
     setUserData((fields) => ({
-          ...fields,
-          roleId: newRol,
-        }));
+      ...fields,
+      roleId: newRol,
+    }));
   }, [userType]);
 
   useEffect(() => {
-    console.log("actualizacion", userData)
+    console.log("actualizacion", userData);
   }, [userData, userData2, userData3]);
 
-  const inputHandler = (name:string, value:any) => {
-    console.log
+  const inputHandler = (name: string, value: any) => {
+    console.log;
     setUserData((fields) => ({
       ...fields,
       [name]: value,
@@ -100,16 +111,25 @@ export const Register: React.FC = () => {
   return (
     <div className="registerDesign">
       <div className="registerOptions">
-        <div className="registerTitle">¿Qué tipo de usuario quieres registrar?</div>
+        <div className="registerTitle">
+          ¿Qué tipo de usuario quieres registrar?
+        </div>
         <NativeSelect
           value={userType}
           style={{ margin: "1em" }}
           onChange={(event) => setUserType(event.currentTarget.value)}
-          data={["", "Estudiante", "Padre", "Profesor", "Personal", "Administrador"]}
+          data={[
+            "",
+            "Estudiante",
+            "Padre",
+            "Profesor",
+            "Personal",
+            "Administrador",
+          ]}
         />
       </div>
-        {userType === "Estudiante" && (
-          <div className="registroEstudiante">
+      {userType === "Estudiante" && (
+        <div className="registroEstudiante">
           <div className="individualRegister">
             {/* <RegisterForm title="Estudiante" onChange={(data) => handleFormChange(0, data)} roleId={5} /> */}
           </div>
@@ -120,30 +140,39 @@ export const Register: React.FC = () => {
             {/* <RegisterForm title="Tutor 2" onChange={(data) => handleFormChange(2, data)} roleId={6} /> */}
           </div>
         </div>
-        )}
-        {userType === "Administrador" && (
-          <div className="registroEstudiante">
+      )}
+      {userType === "Administrador" && (
+        <div className="registroEstudiante">
           <div className="individualRegister">
             {/* <RegisterForm title="Administrador" onChange={(data) => handleFormChange(0, data)} roleId={2} /> */}
           </div>
         </div>
-        )}
-        {userType === "Profesor" && (
-          <div className="registroEstudiante">
+      )}
+      {userType === "Profesor" && (
+        <div className="registroEstudiante">
           <div className="individualRegister">
             {/* <RegisterForm title="Profesor" onChange={(data) => handleFormChange(0, data)} roleId={4} /> */}
-            <RegisterForm title="Profesor" onChange={inputHandler} roleId={4} user={userData}/>
+            <RegisterForm
+              title="Profesor"
+              onChange={inputHandler}
+              roleId={4}
+              user={userData}
+            />
           </div>
         </div>
-        )}
-        {userType === "Personal" && (
-          <div className="registroEstudiante">
+      )}
+      {userType === "Personal" && (
+        <div className="registroEstudiante">
           <div className="individualRegister">
             {/* <RegisterForm title="Personal" onChange={(data) => handleFormChange(0, data)} roleId={3} /> */}
           </div>
         </div>
-        )}
-        <MyButton text="Registrar" onClickFunction={handleRegister} className="button authButtonDesign" />
+      )}
+      <MyButton
+        text="Registrar"
+        onClickFunction={handleRegister}
+        className="button authButtonDesign"
+      />
     </div>
   );
 };

@@ -88,6 +88,7 @@ export interface MyCardProps {
   image: ReactNode;
   title: string;
   url: string;
+  pendingCount?: number;
 }
 
 export interface userRegister {
@@ -159,4 +160,31 @@ export interface Conversation {
   messages: any[];
   receiverName: string;
   unseenCount: number;
+}
+
+export interface Message {
+  newMessage: string;
+  authorId: number;
+  receiverId: number;
+}
+
+export interface newMessage {
+  author: [],
+  authorId: number,
+  id: number,
+  message: string,
+  receiver: [],
+  receiverId: number,
+  seenReceiver: boolean,
+}
+
+export interface seenMessages {
+  userId1: number;
+  userId2: number;
+}
+
+export interface querySearchUsersChat {
+  firstName: string;
+  lastName: string;
+  roleId: number[];
 }
