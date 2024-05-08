@@ -47,65 +47,67 @@ export const Home: React.FC = () => {
       setMessagesArray(response.data);
     } catch (error) {}
   };
-  console.log("roleName: ", roleName);
+
   return (
     <>
       <div className="homeDesign">
-        {(roleName === "admin" || roleName === "super_admin") && (
-          <>
+        <div className="homeContent">
+          {(roleName === "admin" || roleName === "super_admin") && (
+            <>
+              <MyCard
+                image={<SVGRegister color="var(--secondary-color)" />}
+                title="Registro"
+                url="/register"
+              />
+              <MyCard
+                image={<SVGUser color="var(--secondary-color)" />}
+                title="Usuarios"
+                url="/stages"
+              />
+              <MyCard
+                image={<SVGStages color="var(--secondary-color)" />}
+                title="Etapas"
+                url="/stages"
+              />
+              <MyCard
+                image={<SVGSubjects color="var(--secondary-color)" />}
+                title="Asignaturas"
+                url="/subjects"
+              />
+              <MyCard
+                image={<SVGCourses color="var(--secondary-color)" />}
+                title="Cursos"
+                url="/courses"
+              />
+            </>
+          )}
+          {(roleName === "admin" ||
+            roleName === "super_admin" ||
+            roleName === "teacher" ||
+            roleName === "student") && (
             <MyCard
-              image={<SVGRegister color="var(--secondary-color)" />}
-              title="Registro"
-              url="/register"
+              image={<SVGEvents color="var(--secondary-color)" />}
+              title="Eventos"
+              url="/events"
             />
-            <MyCard
-              image={<SVGUser color="var(--secondary-color)" />}
-              title="Usuarios"
-              url="/stages"
-            />
-            <MyCard
-              image={<SVGStages color="var(--secondary-color)" />}
-              title="Etapas"
-              url="/stages"
-            />
-            <MyCard
-              image={<SVGSubjects color="var(--secondary-color)" />}
-              title="Asignaturas"
-              url="/subjects"
-            />
-            <MyCard
-              image={<SVGCourses color="var(--secondary-color)" />}
-              title="Cursos"
-              url="/courses"
-            />
-          </>
-        )}
-        {(roleName === "admin" ||
-          roleName === "super_admin" ||
-          roleName === "teacher" ||
-          roleName === "student") && (
+          )}
           <MyCard
-            image={<SVGEvents color="var(--secondary-color)" />}
-            title="Eventos"
-            url="/events"
+            image={<SVGCalendar color="var(--secondary-color)" />}
+            title="Calendario"
+            url="/calendar"
           />
-        )}
-        <MyCard
-          image={<SVGCalendar color="var(--secondary-color)" />}
-          title="Calendario"
-          url="/calendar"
-        />
-        <MyCard
-          image={<SVGMessages color="var(--secondary-color)" />}
-          title="Mensajes"
-          url="/messages"
-          pendingCount={pendingMessages > 0 ? pendingMessages : undefined}
-        />
-        <MyCard
-          image={<SVGNotifications color="var(--secondary-color)" />}
-          title="Notificaciones"
-          url="/stages"
-        />
+          <MyCard
+            image={<SVGMessages color="var(--secondary-color)" />}
+            title="Mensajes"
+            url="/messages"
+            pendingCount={pendingMessages > 0 ? pendingMessages : undefined}
+          />
+          <MyCard
+            image={<SVGNotifications color="var(--secondary-color)" />}
+            title="Notificaciones"
+            url="/stages"
+          />
+        </div>
         <div className="logoHome">
           <div className="title">APP School</div>
         </div>

@@ -23,7 +23,6 @@ export const MyCard: React.FC<MyCardProps> = ({
         <div className="sideTitleCard"></div>
         <div className="titleCard">
           {title}
-
         </div>
         <div className="sideTitleCard">
         {pendingCount && pendingCount > 0 && (
