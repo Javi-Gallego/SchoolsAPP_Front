@@ -62,7 +62,7 @@ export const Home: React.FC = () => {
               <MyCard
                 image={<SVGUser color="var(--secondary-color)" />}
                 title="Usuarios"
-                url="/stages"
+                url="/users"
               />
               <MyCard
                 image={<SVGStages color="var(--secondary-color)" />}

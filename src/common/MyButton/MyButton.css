@@ -40,8 +40,13 @@
 .marginTopBottom {
   margin: 1em 0 0 0;
 }
-
-@media screen and (max-width: 864px) {
+@media screen and (min-width: 640px) {
+  .authButtonDesign {
+    width: 25vw;
+    height: 5vh;
+  }
+}
+@media screen and (min-width: 1281px) {
   .authButtonDesign {
     width: 25vw;
     height: 5vh;

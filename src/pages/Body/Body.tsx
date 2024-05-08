@@ -10,12 +10,16 @@ import { Calendar } from "../Calendar/Calendar";
 import { Events } from "../Event/Event";
 import { Messages } from "../Messages/Messages";
 import { DetailConversation } from "../DetailConversation/DetailConversation";
+import { Users } from "../Users/Users";
+import { DetailUser } from "../DetailUser/DetailUser";
 
 export const Body = () => {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/users" element={<Users />} />
+      <Route path="detailuser" element={<DetailUser />} />
       <Route path="/home" element={<Home />} />
       <Route path="/stages" element={<Stages />} />
       <Route path="/courses" element={<Courses />} />

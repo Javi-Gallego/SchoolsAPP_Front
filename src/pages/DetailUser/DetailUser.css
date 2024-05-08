@@ -1,0 +1,37 @@
+.detailUserDesign {
+  height: auto;
+  min-height: 90vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+  font-weight: bold;
+}
+.familyList {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.familyMembers{
+    width: 25%;
+    cursor: pointer;
+}
+.detailUserButton{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+@media (min-width: 1280px) {
+  .familyMembers{
+    width: 18%;
+    font-size: 1.6em;
+  }
+}

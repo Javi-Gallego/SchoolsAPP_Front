@@ -18,7 +18,7 @@ import {
 import { useAuthStore } from "../../store/credentials";
 import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
 import { Course } from "../../interfaces/interfaces";
-import { MyInput } from "../../common/MyInput/MyInput";
+import { useDetailUserStore } from "../../store/detailUsers";
 
 export const DetailCourse: React.FC = () => {
   const courseId = useDetailCourseStore((state) => state.id);
@@ -29,6 +29,7 @@ export const DetailCourse: React.FC = () => {
   const stageName = useDetailCourseStore((state) => state.stageName);
   const schoolId = useAuthStore((state) => state.schoolId);
   const token = useAuthStore((state) => state.token);
+  const setDetailedUser = useDetailUserStore((state) => state.setDetailedUser);
   const setTutorId = useDetailCourseStore((state) => state.setTutorId);
   const navigate = useNavigate();
   const [firstFetch, setFirstFetch] = useState(false);
@@ -36,11 +37,9 @@ export const DetailCourse: React.FC = () => {
   const [allTeachers, setAllTeachers] = useState<any[]>([]);
   const [allTeachersNames, setAllTeachersNames] = useState<string[]>([]);
   const [selectedTeacher, setSelectedTeacher] = useState<string>("");
-  const [newTutor, setNewTutor] = useState<any>(0);
   const [allSubjects, setAllSubjects] = useState<any[]>([]);
   const [allSubjectsNames, setAllSubjectsNames] = useState<string[]>([]);
   const [selectedSubject, setSelectedSubject] = useState<string>("");
-  const [allCourseStudents, setAllCourseStudents] = useState<any[]>([]);
   const [isOpenTutor, setIsOpenTutor] = useState(false);
   const [isOpenSubject, setIsOpenSubject] = useState(false);
   const [courseTutorName, setCourseTutorName] = useState<string>("");
@@ -101,7 +100,6 @@ export const DetailCourse: React.FC = () => {
   const fetchCourseSubjects = async () => {
     try {
       const newCourseSubjects = await getCourseSubjects(token, courseId);
-
       setCourseSubjects(newCourseSubjects.data);
     } catch (error) {
       console.log("Error fetching course subjects");
@@ -167,7 +165,6 @@ export const DetailCourse: React.FC = () => {
         (subject) => subject.name === subjectName
       );
       if (!subjectToErase) return;
-      console.log("subjectToErase: ", subjectToErase);
       const courseSubjectToErase = {
         courseId: courseId,
         subjectId: subjectToErase.id,
@@ -205,6 +202,18 @@ export const DetailCourse: React.FC = () => {
       setIsOpenSubject(!isOpenSubject);
     } catch (error) {
       console.log("Error sending subject");
+    }
+  };
+
+  const goToStudentDetail = async (student: any) => {
+    try {
+      const query = `?schoolId=${schoolId}&id=${student.Student.id}`;
+      const studentData = await getUsers(token, query);
+      console.log("Student data", studentData.data[0]);
+      setDetailedUser(studentData.data[0]);
+      navigate("/detailuser");
+    } catch (error) {
+      console.log("Error going to student detail");
     }
   };
 
@@ -312,7 +321,11 @@ export const DetailCourse: React.FC = () => {
               {firstFetch && courseStudents.length > 0 ? (
                 courseStudents.map((student, index) => {
                   return (
-                    <div key={`student${index}`} className="courseSubjectCard">
+                    <div
+                      key={`student${index}`}
+                      className="courseSubjectCard"
+                      onClick={() => goToStudentDetail(student)}
+                    >
                       <div className="courseSubjectTitle">
                         {student.Student.firstName} {student.Student.lastName}{" "}
                         {student.Student.secondLastName}

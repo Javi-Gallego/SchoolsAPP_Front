@@ -42,7 +42,7 @@ export const Events: React.FC = () => {
 
   useEffect(() => {
     if (token === "") {
-      navigate("/login");
+      navigate("/");
     }
     if (roleName === "parent" || roleName === "student") {
       navigate("/home");

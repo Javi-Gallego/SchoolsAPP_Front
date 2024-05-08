@@ -57,6 +57,8 @@ export const useAuthStore = create<Auth>()(
           profilePhoto: "",
           schoolId: 0,
           roles: [],
+          schoolLogo: "",
+          children: [],
         }),
     }),
     { name: "auth-storage" }

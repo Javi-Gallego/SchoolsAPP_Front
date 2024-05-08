@@ -44,16 +44,22 @@ outline: none;
   border: 0.1em solid var(--secondary-color);
   font-size: 1rem;
 }
-  
+.userSearchInputDesign {
+  width: 80%;
+ padding: 0.2em;
+  font-size: 1rem;
+  border-radius: 0.2em;
+  border: 0.1em solid var(--secondary-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+@media screen and (min-width: 640px) {
+  .loginInputDesign {
+    width: 40vw;
+  }
+}
 @media screen and (min-width: 1281px) {
   .authInputDesign {
     width: 30vw;
     height: 4.5vh;
-  }
-}
-
-@media screen and (min-width: 640px) {
-  .loginInputDesign {
-    width: 40vw;
   }
 }
