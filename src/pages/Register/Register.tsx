@@ -6,10 +6,18 @@ import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
 import { RegisterForm } from "../../common/RegisterForm/RegisterForm";
 import { MyButton } from "../../common/MyButton/MyButton";
-import { RegisterUser } from "../../services/ApiCalls";
+import {
+  RegisterUser,
+  createParentStudentRelation,
+} from "../../services/ApiCalls";
 import { useAuthStore } from "../../store/credentials";
-import { userRegister } from "../../interfaces/interfaces";
+import {
+  RegisterUserResponse,
+  setParentStudent,
+  userRegister,
+} from "../../interfaces/interfaces";
 import { useUserInfoStore } from "../../store/userData";
+import { create } from "zustand";
 
 export const Register: React.FC = () => {
   const navigate = useNavigate();
@@ -34,6 +42,7 @@ export const Register: React.FC = () => {
   });
 
   const [userData2, setUserData2] = useState({
+    id: 0,
     firstName: "",
     lastName: "",
     secondLastName: "",
@@ -43,10 +52,11 @@ export const Register: React.FC = () => {
     address: "",
     birthdate: new Date(),
     schoolId: schoolId,
-    roleId: 0,
+    roleId: 6,
   });
 
   const [userData3, setUserData3] = useState({
+    id: 0,
     firstName: "",
     lastName: "",
     secondLastName: "",
@@ -56,7 +66,7 @@ export const Register: React.FC = () => {
     address: "",
     birthdate: new Date(),
     schoolId: schoolId,
-    roleId: 0,
+    roleId: 6,
   });
 
   useEffect(() => {
@@ -92,20 +102,83 @@ export const Register: React.FC = () => {
   }, [userType]);
 
   useEffect(() => {
-    console.log("actualizacion", userData);
   }, [userData, userData2, userData3]);
 
-  const inputHandler = (name: string, value: any) => {
-    console.log;
-    setUserData((fields) => ({
-      ...fields,
-      [name]: value,
-    }));
+  const inputHandler = (name: string, value: any, id: string) => {
+    if (id === "userData") {
+      setUserData((fields) => ({
+        ...fields,
+        [name]: value,
+        email:
+          userType === "Estudiante"
+            ? `${userData.firstName}${userData.lastName}@escolaeldrac.com`
+            : name === "email"
+            ? value
+            : userData.email,
+      }));
+    } else if (id === "userData2") {
+      setUserData2((fields) => ({
+        ...fields,
+        [name]: value,
+      }));
+    } else if (id === "userData3") {
+      setUserData3((fields) => ({
+        ...fields,
+        [name]: value,
+      }));
+    }
   };
 
   const handleRegister = async () => {
-    console.log("Registrando", userData);
-    await RegisterUser({ userData }, token);
+    const regUser = await RegisterUser({ userData }, token);
+    if (userType === "Estudiante") {
+      let relation1: setParentStudent = {
+        parentId: userData2.id,
+        studentId: regUser.data.id,
+      };
+      if (userData2.id !== 0) {
+        const regRelation1 = await createParentStudentRelation(
+          token,
+          relation1
+        );
+      } else {
+        const regUser2: { data: { id: number } } = await RegisterUser(
+          { userData: userData2 },
+          token
+        );
+        relation1 = {
+          parentId: regUser.data.id,
+          studentId: regUser2.data.id,
+        };
+        const regRelation1 = await createParentStudentRelation(
+          token,
+          relation1
+        );
+      }
+      let relation2: setParentStudent = {
+        parentId: userData3.id,
+        studentId: regUser.data.id,
+      };
+      if (userData3.id !== 0) {
+        const regRelation2 = await createParentStudentRelation(
+          token,
+          relation2
+        );
+      } else {
+        const regUser3: { data: { id: number } } = await RegisterUser(
+          { userData: userData3 },
+          token
+        );
+        relation2 = {
+          parentId: regUser3.data.id,
+          studentId: regUser.data.id,
+        };
+        const regRelation2 = await createParentStudentRelation(
+          token,
+          relation2
+        );
+      }
+    }
   };
 
   return (
@@ -121,42 +194,57 @@ export const Register: React.FC = () => {
           data={[
             "",
             "Estudiante",
-            "Padre",
             "Profesor",
             "Personal",
-            "Administrador",
+            roleName === "super_admin" ? "Administrador" : "",
           ]}
         />
       </div>
       {userType === "Estudiante" && (
         <div className="registroEstudiante">
           <div className="individualRegister">
-            {/* <RegisterForm title="Estudiante" onChange={(data) => handleFormChange(0, data)} roleId={5} /> */}
+            <RegisterForm
+              title="Estudiante"
+              onChange={inputHandler}
+              roleId={5}
+              user={userData}
+              id="userData"
+            />
           </div>
           <div className="individualRegister">
-            {/* <RegisterForm title="Tutor 1" onChange={(data) => handleFormChange(1, data)} roleId={6} /> */}
+            <RegisterForm
+              title="Tutor 1"
+              onChange={inputHandler}
+              roleId={6}
+              user={userData2}
+              id="userData2"
+            />
           </div>
           <div className="individualRegister">
-            {/* <RegisterForm title="Tutor 2" onChange={(data) => handleFormChange(2, data)} roleId={6} /> */}
+            <RegisterForm
+              title="Tutor 2"
+              onChange={inputHandler}
+              roleId={6}
+              user={userData3}
+              id="userData3"
+            />
           </div>
         </div>
       )}
       {userType === "Administrador" && (
         <div className="registroEstudiante">
-          <div className="individualRegister">
-            {/* <RegisterForm title="Administrador" onChange={(data) => handleFormChange(0, data)} roleId={2} /> */}
-          </div>
+          <div className="individualRegister"></div>
         </div>
       )}
       {userType === "Profesor" && (
         <div className="registroEstudiante">
           <div className="individualRegister">
-            {/* <RegisterForm title="Profesor" onChange={(data) => handleFormChange(0, data)} roleId={4} /> */}
             <RegisterForm
               title="Profesor"
               onChange={inputHandler}
               roleId={4}
               user={userData}
+              id="userData"
             />
           </div>
         </div>
@@ -164,7 +252,13 @@ export const Register: React.FC = () => {
       {userType === "Personal" && (
         <div className="registroEstudiante">
           <div className="individualRegister">
-            {/* <RegisterForm title="Personal" onChange={(data) => handleFormChange(0, data)} roleId={3} /> */}
+            <RegisterForm
+              title="Personal"
+              onChange={inputHandler}
+              roleId={3}
+              user={userData}
+              id="userData"
+            />
           </div>
         </div>
       )}

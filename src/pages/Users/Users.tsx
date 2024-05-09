@@ -45,8 +45,7 @@ export const Users: React.FC = () => {
     }
   }, [userFilter]);
 
-  useEffect(() => {
-  }, [users]);
+  useEffect(() => {}, [users]);
 
   const fetchUsers = async () => {
     try {
@@ -66,14 +65,13 @@ export const Users: React.FC = () => {
   };
 
   const setDetail = (user: any) => {
-    console.log("User", user);
     setDetailedUser(user);
     navigate("/detailuser");
   };
 
   return (
     <div className="usersDesign">
-        <div className="userTitle">Users</div>
+      <div className="userTitle">Users</div>
       <div className="userFilters">
         <div className="userFilter">
           <NativeSelect
@@ -115,24 +113,30 @@ export const Users: React.FC = () => {
       </div>
       <div className="usersList">
         <div className="userSearchCard">
-            <div className="userCardName">Name</div>
-            <div className="userCardEmail">Email</div>
-            <div className="userCardRole">Role</div>
+          <div className="userCardName">Name</div>
+          <div className="userCardEmail">Email</div>
+          <div className="userCardRole">Role</div>
         </div>
-            {users.length > 0 
-            ? (
-                users.map((user) => (
-                  <div key={user.id} className="userSearchCard" onClick={() => setDetail(user)}>
-                    <div className="userCardName">
-                      {user.firstName} {user.lastName}
-                    </div>
-                    <div className="userCardEmail">{user.email}</div>
-                    <div className="userCardRole">{user.roles.map((user_role: string ) => user_role).join(" ")}</div>
-                  </div>
-                ))
-            ) : 
-            <div className="noUsersFound">No users found</div>}
-        </div>
+        {users.length > 0 ? (
+          users.map((user) => (
+            <div
+              key={user.id}
+              className="userSearchCard"
+              onClick={() => setDetail(user)}
+            >
+              <div className="userCardName">
+                {user.firstName} {user.lastName}
+              </div>
+              <div className="userCardEmail">{user.email}</div>
+              <div className="userCardRole">
+                {user.roles.map((user_role: string) => user_role).join(" ")}
+              </div>
+            </div>
+          ))
+        ) : (
+          <div className="noUsersFound">No users found</div>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,16 +1,32 @@
 import "./RegisterForm.css";
 import { DateInput } from "@mantine/dates";
 import { MyInput } from "../MyInput/MyInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { validate } from "../../utils/functions";
 import { RegisterFormProps } from "../../interfaces/interfaces";
 import { useAuthStore } from "../../store/credentials";
+import { NativeSelect, Switch } from "@mantine/core";
+import { getUsers } from "../../services/ApiCalls";
 
-export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, roleId, user}) => {
+export const RegisterForm: React.FC<RegisterFormProps> = ({
+  title,
+  onChange,
+  roleId,
+  user,
+  id,
+}) => {
+  const token = useAuthStore((state) => state.token);
   const [value, setValue] = useState<Date>(new Date());
   const [msgError, setMsgError] = useState("");
   const { schoolId } = useAuthStore();
-
+  const [checked, setChecked] = useState(false);
+  const [users, setUsers] = useState<any[]>([]);
+  const [userName, setUserName] = useState("");
+  const [userFilter, setUserFilter] = useState({
+    firstNameFilter: "",
+    lastNameFilter: "",
+    roleNameFilter: "",
+  });
   const [userError, setUserError] = useState({
     firstNameError: "",
     lastNameError: "",
@@ -21,17 +37,52 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
     addressError: "",
   });
 
+  useEffect(() => {
+    if (
+      userFilter.firstNameFilter !== "" ||
+      userFilter.lastNameFilter !== "" ||
+      userFilter.roleNameFilter !== ""
+    ) {
+      const searching = setTimeout(() => {
+        fetchUsers();
+      }, 350);
+      return () => clearTimeout(searching);
+    } else {
+      setUsers([]);
+    }
+  }, [userFilter]);
+
+  useEffect(() => {
+  }, [users]);
+
+  const fetchUsers = async () => {
+    try {
+      const queryFilter = `?schoolId=${schoolId}&roleName=${userFilter.roleNameFilter}&firstName=${userFilter.firstNameFilter}`;
+      const allUsers = await getUsers(token, queryFilter);
+      setUsers(allUsers.data);
+    } catch (error) {
+      console.log("Error fetching users");
+    }
+  };
+
   const handleDateChange = (dateValue: Date | null) => {
     if (!dateValue) {
       dateValue = new Date();
-    } else{
+    } else {
       setValue(dateValue);
     }
-    onChange("birthdate", dateValue.toISOString());
+    onChange("birthdate", dateValue.toISOString(), id);
+  };
+
+  const eventHandler = (value: string, name: string) => {
+    setUserFilter((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.name, e.target.value);
+    onChange(e.target.name, e.target.value, id);
 
     checkError(e);
   };
@@ -43,13 +94,103 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
       ...prevState,
       [e.target.name + "Error"]: error,
     }));
+  };
+
+  const setDetail = (user: any) => {
+    onChange("id", user.id.toString(), id);
+    setUserName(user.firstName + " " + user.lastName);
+    setUserFilter({
+      firstNameFilter: "",
+      lastNameFilter: "",
+      roleNameFilter: "",
+    });
 
   };
 
   return (
     <>
       <div className="registerTitleForm">{title}</div>
-      <MyInput
+      {roleId !== 1 && roleId !== 2 && roleId !== 5 && (
+        <Switch
+          checked={checked}
+          label="El usuario ya está registrado"
+          onChange={(event) => setChecked(event.currentTarget.checked)}
+        />
+      )}
+      {checked ? (
+        <div className="registerFilters">
+          {users.length > 0 
+          ? (
+            users.map((user) => (
+              <div
+                key={user.id}
+                className="registerSearchCard"
+                onClick={() => setDetail(user)}
+              >
+                <div className="registerCardName">
+                  {user.firstName} {user.lastName}
+                </div>
+              </div>
+            ))
+          ) 
+          : (
+            <div className="registerCardName">{ userName !== "" ? null : "No users found"}</div>
+          )}
+        <div className="registerCardName">
+          <div className="userRegisteredSelected">Usuario seleccionado:</div>
+          <div>{userName}</div>
+          </div>
+          <div className="registerFilter">
+            <NativeSelect
+              name="roleNameFilter"
+              value={userFilter.roleNameFilter || ""}
+              style={{ margin: "1em" }}
+              onChange={(event) =>
+                eventHandler(
+                  event.currentTarget.value,
+                  event.currentTarget.name
+                )
+              }
+              data={["", "teacher", "personal", "parent"]}
+            />
+          </div>
+          <div className="registerFilter">
+            <MyInput
+              type={"text"}
+              name={"firstNameFilter"}
+              value={userFilter.firstNameFilter || ""}
+              placeholder={"Nombre"}
+              disabled={false}
+              onChangeFunction={(event) =>
+                eventHandler(
+                  event.currentTarget.value,
+                  event.currentTarget.name
+                )
+              }
+              className={"userRegisterInputDesign"}
+            />
+          </div>
+          <div className="registerFilter">
+            <MyInput
+              type={"text"}
+              name={"lastNameFilter"}
+              value={userFilter.lastNameFilter || ""}
+              placeholder={"Apellido"}
+              disabled={false}
+              onChangeFunction={(event) =>
+                eventHandler(
+                  event.currentTarget.value,
+                  event.currentTarget.name
+                )
+              }
+              className={"userRegisterInputDesign"}
+            />
+          </div>
+        </div>
+        
+      ) : (
+        <>
+        <MyInput
         type="text"
         name="firstName"
         placeholder="Nombre"
@@ -100,7 +241,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
       <MyInput
         type="tel"
         name="phone"
-        placeholder="Teléfono"
+        placeholder="Teléfono (no necesario en estudiantes)"
         value={user.phone || ""}
         disabled={false}
         onChangeFunction={inputHandler}
@@ -114,7 +255,7 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
         name="email"
         placeholder="email"
         value={user.email || ""}
-        disabled={false}
+        disabled={roleId === 5 ? true : false}
         onChangeFunction={inputHandler}
         className={`authInputDesign ${
           userError.emailError !== "" ? "authInputDesignError" : ""
@@ -134,17 +275,16 @@ export const RegisterForm: React.FC <RegisterFormProps>= ({ title, onChange, rol
       />
       <div className="fieldEr">{userError.passwordError}</div>
       <DateInput
-        style={{ marginBottom: '0.5em' }}
+        style={{ marginBottom: "0.5em" }}
         locale="es"
         clearable
         name="birthdate"
         label="Fecha nacimiento"
         placeholder="Fecha nacimiento"
         value={value}
-        // onChange={setValue}
-        // onChange={inputHandler}
         onChange={handleDateChange}
-      />
+      /></>
+      )}
     </>
   );
 };

@@ -92,6 +92,7 @@ export interface MyCardProps {
 }
 
 export interface userRegister {
+  id?: number;
   firstName: string;
   lastName: string;
   secondLastName: string;
@@ -107,9 +108,10 @@ export interface userRegister {
 export interface RegisterFormProps {
   title: string;
   // onChange: (value: userRegister) => void;
-  onChange: (name: string, value: string) => void;
+  onChange: (name: string, value: string, id: string) => void;
   roleId: number;
   user: userRegister;
+  id: string;
 }
 
 export interface decoded {
@@ -188,3 +190,16 @@ export interface querySearchUsersChat {
   lastName: string;
   roleId: number[];
 }
+
+export interface setParentStudent{
+  parentId: number;
+  studentId: number;
+}
+
+export interface RegisterUserResponse {
+  success: boolean;
+  message: string;
+  data: {
+    id: number;
+  };
+};

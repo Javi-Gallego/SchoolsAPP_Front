@@ -1,4 +1,4 @@
-import { Course, DataFetched, LoginData, Message, SetCourse, SetCourseSubject, SetSubject, TokenFetched, seenMessages, setEvent, setStage } from "../interfaces/interfaces";
+import { Course, DataFetched, LoginData, Message, RegisterUserResponse, SetCourse, SetCourseSubject, SetSubject, TokenFetched, seenMessages, setEvent, setParentStudent, setStage } from "../interfaces/interfaces";
 
 const rootUrl = "http://localhost:4000/api";  
 
@@ -32,7 +32,7 @@ export const LogUser = async (credentials: LoginData): Promise<TokenFetched> => 
       }
 };
 
-export const RegisterUser = async (credentials: any, token: string): Promise<DataFetched> => {
+export const RegisterUser = async (credentials: any, token: string): Promise<RegisterUserResponse> => {
   const options = {
     method: "POST",
     headers: {
@@ -43,11 +43,9 @@ export const RegisterUser = async (credentials: any, token: string): Promise<Dat
   };
   
   try {
-    console.log("token", token)
-    console.log(options.body)
     const response: any = await fetch(`${rootUrl}/auth/register`, options);
 
-    const data: DataFetched = await response.json();
+    const data: RegisterUserResponse = await response.json();
 
     if(!data.success){
       throw new Error(data.message)
@@ -55,6 +53,33 @@ export const RegisterUser = async (credentials: any, token: string): Promise<Dat
 
     return data;
   } catch (error: unknown) {
+    let answer: RegisterUserResponse = {
+      message: "",
+      data: {id:0},
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const createParentStudentRelation = async (token:string, relation: setParentStudent): Promise<DataFetched> => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(relation),
+  };
+
+  try {
+    const response = await fetch(`${rootUrl}/parentstudent`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
     let answer: DataFetched = {
       message: "",
       data: [""],
