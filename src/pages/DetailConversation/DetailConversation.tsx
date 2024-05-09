@@ -8,9 +8,11 @@ import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { Message, newMessage, seenMessages } from "../../interfaces/interfaces";
 import { createMessage, updateSeenMessages } from "../../services/ApiCalls";
+import { isTokenExpired } from "../../utils/functions";
 
 export const DetailConversation: React.FC = () => {
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
   const token = useAuthStore((state) => state.token);
   const userId = useAuthStore((state) => state.id);
   const unseenCount = useChatStore((state) => state.unseenCount);
@@ -25,8 +27,9 @@ export const DetailConversation: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
+    if (token === "" || isTokenExpired(token)) {
+      logout();
+      navigate("/");
     }
     let receiver: number = 0;
     if (messages.length > 0) {

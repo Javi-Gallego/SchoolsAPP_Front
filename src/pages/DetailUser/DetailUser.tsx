@@ -4,15 +4,23 @@ import "./DetailUser.css";
 import { useDetailUserStore } from "../../store/detailUsers";
 import { UserCard } from "../../common/UserCard/UserCard";
 import { useState } from "react";
+import { useAuthStore } from "../../store/credentials";
+import { isTokenExpired } from "../../utils/functions";
 
 export const DetailUser: React.FC = () => {
   const navigate = useNavigate();
+  const token = useAuthStore((state) => state.token);
+  const logout = useAuthStore((state) => state.logout);
   const detailedUser = useDetailUserStore((state) => state.detailedUser);
   const [showUserCard, setShowUserCard] = useState<number>(1);
-
   const changeMember = (member: number) => {
     setShowUserCard(member);
   };
+
+  if (token === "" || isTokenExpired(token)) {
+    logout();
+    navigate("/");
+  }
 
   return (
     <div className="detailUserDesign">

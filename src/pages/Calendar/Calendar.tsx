@@ -10,9 +10,11 @@ import { useAuthStore } from "../../store/credentials";
 import { NativeSelect } from "@mantine/core";
 import { useUserInfoStore } from "../../store/userData";
 import { useNavigate } from "react-router-dom";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Calendar = () => {
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
   const roleName = useUserInfoStore((state) => state.roleName);
@@ -26,8 +28,9 @@ export const Calendar = () => {
   const [courseType, setCourseType] = useState<string>("");
 
   useEffect(() => {
-    if(!token){
-      navigate("/login");
+    if(!token || isTokenExpired(token)){
+      logout();
+      navigate("/");
     }
     if (!firstFetch) {
       fetchEvents();

@@ -19,6 +19,7 @@ import { useAuthStore } from "../../store/credentials";
 import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
 import { Course } from "../../interfaces/interfaces";
 import { useDetailUserStore } from "../../store/detailUsers";
+import { isTokenExpired } from "../../utils/functions";
 
 export const DetailCourse: React.FC = () => {
   const courseId = useDetailCourseStore((state) => state.id);
@@ -29,6 +30,7 @@ export const DetailCourse: React.FC = () => {
   const stageName = useDetailCourseStore((state) => state.stageName);
   const schoolId = useAuthStore((state) => state.schoolId);
   const token = useAuthStore((state) => state.token);
+  const logout = useAuthStore((state) => state.logout);
   const setDetailedUser = useDetailUserStore((state) => state.setDetailedUser);
   const setTutorId = useDetailCourseStore((state) => state.setTutorId);
   const navigate = useNavigate();
@@ -61,8 +63,9 @@ export const DetailCourse: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
+    if (token === "" || isTokenExpired(token)) {
+      logout();
+      navigate("/");
     }
     if (!firstFetch) {
       fetchCourseSubjects();

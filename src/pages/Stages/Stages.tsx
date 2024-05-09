@@ -10,15 +10,17 @@ import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
 import { Modal } from "../../common/Modal/Modal";
 import { useNavigate } from "react-router-dom";
 import { useUserInfoStore } from "../../store/userData";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Stages: React.FC = () => {
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
+  const token = useAuthStore((state) => state.token);
+  const schoolId = useAuthStore((state) => state.schoolId);
   const roleName = useUserInfoStore((state) => state.roleName);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [stages, setStages] = useState<Stage[]>([]);
   const [firstFetch, setFirstFetch] = useState<boolean>(false);
-  const token = useAuthStore((state) => state.token);
-  const schoolId = useAuthStore((state) => state.schoolId);
   const [addStage, setAddStage] = useState<boolean>(false);
   const [stageName, setStageName] = useState<setStage>({
     name: "",
@@ -26,8 +28,9 @@ export const Stages: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
+    if (token === "" || isTokenExpired(token)) {
+      logout();
+      navigate("/");
     }
     if(roleName !== "admin" && roleName !== "super_admin"){
       navigate("/home");

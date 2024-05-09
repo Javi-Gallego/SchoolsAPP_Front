@@ -1,3 +1,4 @@
+import "./Home.css";
 import { useEffect, useState } from "react";
 import { MyCard } from "../../common/MyCard/MyCard";
 import { SVGCalendar } from "../../common/SVGCalendar/SVGCalendar";
@@ -9,14 +10,15 @@ import { SVGRegister } from "../../common/SVGRegister/SVGRegister";
 import { SVGStages } from "../../common/SVGStages/SVGStages";
 import { SVGSubjects } from "../../common/SVGSubjects/SVGSubjects";
 import { SVGUser } from "../../common/SVGUser/SVGUser";
-import "./Home.css";
 import { getMessages } from "../../services/ApiCalls";
 import { useAuthStore } from "../../store/credentials";
 import { useUserInfoStore } from "../../store/userData";
 import { useNavigate } from "react-router-dom";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
   const token = useAuthStore((state) => state.token);
   const roleName = useUserInfoStore((state) => state.roleName);
   const [firstFetch, setFirstFetch] = useState<boolean>(false);
@@ -24,8 +26,9 @@ export const Home: React.FC = () => {
   const [pendingMessages, setPendingMessages] = useState<number>(0);
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
+    if (!token || isTokenExpired(token) ){
+      logout();
+      navigate("/");
     }
     if (!firstFetch) {
       fetchMessages();

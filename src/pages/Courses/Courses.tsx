@@ -12,7 +12,6 @@ import {
   Course,
   SetCourse,
   Stage,
-  setStage,
 } from "../../interfaces/interfaces";
 import { SVGAdd } from "../../common/SVGAdd/SVGAdd";
 import { MyInput } from "../../common/MyInput/MyInput";
@@ -23,8 +22,10 @@ import { Modal } from "../../common/Modal/Modal";
 import { useDetailCourseStore } from "../../store/detailCourse";
 import { useNavigate } from "react-router-dom";
 import { useUserInfoStore } from "../../store/userData";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Courses: React.FC = () => {
+  const logout = useAuthStore((state) => state.logout);
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
   const roleName = useUserInfoStore((state) => state.roleName);
@@ -52,7 +53,11 @@ export const Courses: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!token || roleName !== "admin") {
+    if(token === "" || isTokenExpired(token)){
+      logout();
+      navigate("/");
+    }
+    if (roleName !== "admin") {
       navigate("/home");
     }
     if (!firstFetch) {

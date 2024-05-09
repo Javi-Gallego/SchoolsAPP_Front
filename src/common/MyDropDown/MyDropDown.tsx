@@ -6,11 +6,14 @@ import { LogoutLink } from "../LogoutLink/LogoutLink";
 
 export const MyDropDown = () => {
   const profilePhoto = useAuthStore((state) => state.profilePhoto);
+  const children = useAuthStore((state) => state.children);
   const [myDropdown, setMyDropdown] = useState(false);
 
   const toggleDropDown = () => {
     setMyDropdown(!myDropdown);
   };
+  
+  const selectChild = (child: any) => {};
 
   return (
     <div className="dropDown" onClick={toggleDropDown}>
@@ -21,9 +24,14 @@ export const MyDropDown = () => {
         id="myDropdown"
         className={myDropdown ? "dropDownContent show" : "dropDownContent"}
       >
+        {children.length > 0 &&
+          children.map((child, index) => (
+            <div key={`child${index}`} onClick={() => selectChild(child)}>
+              {child.firstName} {child.lastName} {child.secondLastName}
+            </div>
+          ))
+        }
         <HeaderLink title="Perfil" destination="/profile" />
-        <HeaderLink title="Mis posts" destination="/ownposts" />
-        <HeaderLink title="Búsqueda" destination="/search" />
         <LogoutLink />
       </div>
     </div>

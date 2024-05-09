@@ -12,12 +12,11 @@ import {
 } from "../../services/ApiCalls";
 import { useAuthStore } from "../../store/credentials";
 import {
-  RegisterUserResponse,
   setParentStudent,
   userRegister,
 } from "../../interfaces/interfaces";
 import { useUserInfoStore } from "../../store/userData";
-import { create } from "zustand";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Register: React.FC = () => {
   const navigate = useNavigate();
@@ -70,8 +69,8 @@ export const Register: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
+    if (token === "" || isTokenExpired(token)) {
+      navigate("/");
     }
     if (roleName !== "admin" && roleName !== "super_admin") {
       navigate("/home");
@@ -93,7 +92,6 @@ export const Register: React.FC = () => {
     } else {
       newRol = 0;
     }
-    console.log("Rol", newRol);
 
     setUserData((fields) => ({
       ...fields,

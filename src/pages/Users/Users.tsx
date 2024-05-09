@@ -7,9 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { useUserInfoStore } from "../../store/userData";
 import { getUsers } from "../../services/ApiCalls";
 import { useDetailUserStore } from "../../store/detailUsers";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Users: React.FC = () => {
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
   const roleName = useUserInfoStore((state) => state.roleName);
@@ -22,7 +24,8 @@ export const Users: React.FC = () => {
   });
 
   useEffect(() => {
-    if (token === "") {
+    if (token === "" || isTokenExpired(token)) {
+      logout();
       navigate("/");
     }
     if (roleName !== "admin" && roleName !== "super_admin") {

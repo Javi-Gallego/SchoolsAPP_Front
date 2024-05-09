@@ -9,9 +9,11 @@ import { MyButton } from "../../common/MyButton/MyButton";
 import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
 import { useNavigate } from "react-router-dom";
 import { useUserInfoStore } from "../../store/userData";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Subjects: React.FC = () => {
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
   const roleName = useUserInfoStore((state) => state.roleName);
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
@@ -24,8 +26,8 @@ export const Subjects: React.FC = () => {
   });
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
+    if (token === "" || isTokenExpired(token)) {
+      navigate("/");
     }
     if (roleName !== "admin" && roleName !== "super_admin") {
       navigate("/home");

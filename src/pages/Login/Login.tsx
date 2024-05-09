@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Login.css";
-import { LoginData, decoded } from "../../interfaces/interfaces";
+import { LoginData } from "../../interfaces/interfaces";
 import { LogUser } from "../../services/ApiCalls";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { decodeToken } from "react-jwt";

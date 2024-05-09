@@ -11,12 +11,14 @@ import { NativeSelect } from "@mantine/core";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { MyButton } from "../../common/MyButton/MyButton";
 import { DateInput } from "@mantine/dates";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Events: React.FC = () => {
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
   const roleName = useUserInfoStore((state) => state.roleName);
   const userId = useUserInfoStore((state) => state.id);
+  const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
   const [firstFetch, setFirstFetch] = useState<boolean>(false);
   const [stages, setStages] = useState<Stage[]>([]);
@@ -41,7 +43,8 @@ export const Events: React.FC = () => {
   });
 
   useEffect(() => {
-    if (token === "") {
+    if (token === "" || isTokenExpired(token)) {
+      logout();
       navigate("/");
     }
     if (roleName === "parent" || roleName === "student") {

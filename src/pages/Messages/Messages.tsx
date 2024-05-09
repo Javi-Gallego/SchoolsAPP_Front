@@ -11,9 +11,11 @@ import { useChatStore } from "../../store/detailChat";
 import { useNavigate } from "react-router-dom";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { useUserInfoStore } from "../../store/userData";
+import { isTokenExpired } from "../../utils/functions";
 
 export const Messages: React.FC = () => {
   const navigate = useNavigate();
+  const logout = useAuthStore((state) => state.logout);
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
   const userId = useAuthStore((state) => state.id);
@@ -37,8 +39,9 @@ export const Messages: React.FC = () => {
   });
 
   useEffect(() => {
-    if(!token){
-      navigate("/login");
+    if(token === "" || isTokenExpired(token)){
+      logout();
+      navigate("/");
     }
     if (roleName === "parent" || roleName === "student") {
       setQueryRoleName("teacher,personal");
