@@ -9,19 +9,17 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .authButtonDesign {
-  width: 17vw;
-  max-width: 18em;
+  width: 30vw;
   height: 7vh;
-  max-height: 3em;
   border-radius: 0.2em;
   font-size: 1rem;
   font-weight: bold;
 }
 .loginButtonDesign{
-  width: 17vw;
+  width: 30vw;
   height: 7vh;
   border-radius: 0.2em;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .modalButtonDesign{
@@ -40,15 +38,38 @@
 .marginTopBottom {
   margin: 1em 0 0 0;
 }
+.margitBottomButton{
+  margin: 0 0 1em 0;
+}
 @media screen and (min-width: 640px) {
   .authButtonDesign {
-    width: 25vw;
+    width: 20vw;
     height: 5vh;
   }
 }
 @media screen and (min-width: 1281px) {
   .authButtonDesign {
     width: 25vw;
-    height: 5vh;
+  }
+  .loginButtonDesign {
+    width: 20vw;
+  }
+}
+@media screen and (min-height: 745px) {
+  .authButtonDesign {
+    height: 6.5vh;
+  }
+  .loginButtonDesign {
+    height: 6.5vh;
+    font-size: 1.4rem;
+  }
+}
+@media screen and (min-height: 981px) {
+  .authButtonDesign {
+    height: 4.5vh;
+  }
+  .loginButtonDesign {
+    height: 4vh;
+    font-size: 1.5rem;
   }
 }

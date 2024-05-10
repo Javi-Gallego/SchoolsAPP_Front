@@ -27,8 +27,7 @@ export const Events: React.FC = () => {
   const [eventType, setEventType] = useState<string>("");
   const [stageType, setStageType] = useState<string>("");
   const [courseType, setCourseType] = useState<string>("");
-  const [startValue, setStartValue] = useState<Date>(new Date());
-  const [endValue, setEndValue] = useState<Date>(new Date());
+  const [startValue] = useState<Date>(new Date());
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [newEvent, setNewEvent] = useState<setEvent>({
     title: "",

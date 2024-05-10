@@ -26,9 +26,10 @@
   align-items: center;
 }
 .headerLogo img {
-  height: 3em;
+  height: 9.8vh;
 }
 .headerLogo img:hover {
   cursor: pointer;
 }
+
 

@@ -14,9 +14,9 @@
   outline: none;
 }
 .loginInputDesign {
-  width: 50vw;
+  width: 70vw;
   height: 7vh;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border-radius: 0.2em;
   border: 0.1em solid var(--secondary-color);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -27,6 +27,14 @@ border: 0.1em solid red;
 .loginInputDesign:focus {
 box-shadow: 1px 1px 5px 1px var(--secondary-color);
 outline: none;
+}
+.searchUserInputDesign {
+  width: 70vw;
+  height: 7vh;
+  font-size: 1.2rem;
+  border-radius: 0 0 0.2em 0.2em;
+  border: 0.1em solid var(--secondary-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .modalInputDesign {
   width: 80%;
@@ -53,13 +61,33 @@ outline: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 @media screen and (min-width: 640px) {
-  .loginInputDesign {
-    width: 40vw;
+  .loginInputDesign, .searchUserInputDesign {
+    width: 35vw;
   }
 }
-@media screen and (min-width: 1281px) {
-  .authInputDesign {
+@media screen and (min-width: 1601px) {
+  .authInputDesign, .searchUserInputDesign {
     width: 30vw;
+  }
+  .loginInputDesign {
+    width: 20vw;
+  }
+}
+@media screen and (min-height: 745px) {
+  .authInputDesign {
+    height: 6.5vh;
+  }
+  .loginInputDesign {
+    height: 6.5vh;
+    font-size: 1.4rem;
+  }
+}
+@media screen and (min-height: 900px) {
+  .authInputDesign {
     height: 4.5vh;
+  }
+  .loginInputDesign, .searchUserInputDesign {
+    height: 4vh;
+    font-size: 1.5rem;
   }
 }

@@ -21,9 +21,7 @@ import { isTokenExpired } from "../../utils/functions";
 export const Register: React.FC = () => {
   const navigate = useNavigate();
   const roleName = useUserInfoStore((state) => state.roleName);
-  const [value, setValue] = useState<Date | null>(null);
   const [userType, setUserType] = useState<string>("");
-  const [msgError, setMsgError] = useState("");
   const { schoolId } = useAuthStore();
   const { token } = useAuthStore();
 
@@ -135,7 +133,7 @@ export const Register: React.FC = () => {
         studentId: regUser.data.id,
       };
       if (userData2.id !== 0) {
-        const regRelation1 = await createParentStudentRelation(
+        await createParentStudentRelation(
           token,
           relation1
         );
@@ -148,7 +146,7 @@ export const Register: React.FC = () => {
           parentId: regUser.data.id,
           studentId: regUser2.data.id,
         };
-        const regRelation1 = await createParentStudentRelation(
+        await createParentStudentRelation(
           token,
           relation1
         );
@@ -158,7 +156,7 @@ export const Register: React.FC = () => {
         studentId: regUser.data.id,
       };
       if (userData3.id !== 0) {
-        const regRelation2 = await createParentStudentRelation(
+        await createParentStudentRelation(
           token,
           relation2
         );
@@ -171,7 +169,7 @@ export const Register: React.FC = () => {
           parentId: regUser3.data.id,
           studentId: regUser.data.id,
         };
-        const regRelation2 = await createParentStudentRelation(
+        await createParentStudentRelation(
           token,
           relation2
         );
@@ -263,7 +261,7 @@ export const Register: React.FC = () => {
       <MyButton
         text="Registrar"
         onClickFunction={handleRegister}
-        className="button authButtonDesign"
+        className="button authButtonDesign margitBottomButton"
       />
     </div>
   );

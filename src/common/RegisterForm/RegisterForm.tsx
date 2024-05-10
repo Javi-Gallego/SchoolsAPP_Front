@@ -17,7 +17,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
 }) => {
   const token = useAuthStore((state) => state.token);
   const [value, setValue] = useState<Date>(new Date());
-  const [msgError, setMsgError] = useState("");
   const { schoolId } = useAuthStore();
   const [checked, setChecked] = useState(false);
   const [users, setUsers] = useState<any[]>([]);
@@ -110,32 +109,17 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
   return (
     <>
       <div className="registerTitleForm">{title}</div>
-      {roleId !== 1 && roleId !== 2 && roleId !== 5 && (
-        <Switch
-          checked={checked}
-          label="El usuario ya está registrado"
-          onChange={(event) => setChecked(event.currentTarget.checked)}
-        />
-      )}
+      <div className="registerSwitch">
+        {roleId !== 1 && roleId !== 2 && roleId !== 5 && (
+          <Switch
+            checked={checked}
+            label="El usuario ya está registrado"
+            onChange={(event) => setChecked(event.currentTarget.checked)}
+          />
+        )}
+      </div>
       {checked ? (
         <div className="registerFilters">
-          {users.length > 0 
-          ? (
-            users.map((user) => (
-              <div
-                key={user.id}
-                className="registerSearchCard"
-                onClick={() => setDetail(user)}
-              >
-                <div className="registerCardName">
-                  {user.firstName} {user.lastName}
-                </div>
-              </div>
-            ))
-          ) 
-          : (
-            <div className="registerCardName">{ userName !== "" ? null : "No users found"}</div>
-          )}
         <div className="registerCardName">
           <div className="userRegisteredSelected">Usuario seleccionado:</div>
           <div>{userName}</div>
@@ -185,6 +169,23 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({
               }
               className={"userRegisterInputDesign"}
             />
+            {users.length > 0 
+          ? (
+            users.map((user) => (
+              <div
+                key={user.id}
+                className="registerSearchCard"
+                onClick={() => setDetail(user)}
+              >
+                <div className="registerCardName">
+                  {user.firstName} {user.lastName}
+                </div>
+              </div>
+            ))
+          ) 
+          : (
+            <div className="registerCardName">{ userName !== "" ? null : "No users found"}</div>
+          )}
           </div>
         </div>
         

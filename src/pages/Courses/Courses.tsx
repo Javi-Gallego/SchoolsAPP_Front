@@ -182,7 +182,7 @@ export const Courses: React.FC = () => {
           stages.map((stage, stageindex) => {
             return (
               <div className="coursesContainer" key={`stage${stageindex}`}>
-                <div className="stageCard">
+                <div className="courseStageCard">
                   <div className="courseTitle">{stage.name}</div>
                 </div>
                 {courses.length > 0 ? (

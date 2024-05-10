@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/credentials";
-import { HeaderLink } from "../HeaderLink/HeaderLink";
 import { MyDropDown } from "../MyDropDown/MyDropDown";
 import "./Header.css";
 

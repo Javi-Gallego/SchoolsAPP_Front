@@ -17,7 +17,7 @@
   align-items: center;
 }
 .courseCard {
-  width: 40%;
+  width: 50%;
   display: flex;
   margin: 0.3em;
   flex-direction: row;
@@ -26,6 +26,16 @@
   background-color: var(--primary-color);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
+.courseStageCard {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 55%;
+  display: flex;
+  margin: 0.5em;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 0.1em var(--secondary-color) solid;
+}
 .courseTitle {
   width: 100%;
   display: flex;
@@ -33,30 +43,57 @@
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  cursor: pointer ;
+  cursor: pointer;
 }
 .addCourse {
-  width: 5%;
+  width: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
-.titleCourseModal{
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    font-size: 1.6em;
+.titleCourseModal {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.6em;
 }
-.stageCourseModal, .yearCourseModal{
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    font-weight: bold;
+.stageCourseModal,
+.yearCourseModal {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+}
+@media screen and (min-width: 641px) {
+  .addCourse {
+    width: 5%;
+  }
+  .courseCard {
+    width: 45%;
+    font-size: 1.2rem;
+  }
+  .courseStageCard {
+    width: 55%;
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 1281px) {
+  .addCourse {
+    width: 4%;
+  }
+  .courseCard {
+    width: 38%;
+    font-size: 1.4rem;
+  }
+  .courseStageCard {
+    width: 45%;
+    font-size: 1.4rem;
+  }
 }

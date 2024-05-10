@@ -1,6 +1,10 @@
 .dropDown {
+  height: 100%;
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1em;
   font-weight: bold;
 }
@@ -15,6 +19,7 @@
 }
 
 .headerPhotoProfile {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,8 +27,8 @@
 }
 
 .headerPhotoProfile img {
-  height: 3em;
-  width: 3em;
+  height: 9vh;
+  width: 9vh;
   border-radius: 50%;
 }
 
@@ -37,6 +42,9 @@
   align-items: flex-start;
   cursor: pointer;
   padding: 0.2em 0.8em;
+}
+.registerSwitch{
+  height: 2em;
 }
 
 

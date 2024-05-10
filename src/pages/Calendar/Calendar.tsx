@@ -147,6 +147,7 @@ export const Calendar = () => {
           events={events}
           eventClick={handleEventClick}
           contentHeight="77vh"
+          firstDay={1}
         />
         <Modal isOpen={isOpen} toggleModal={toggleModal}>
           <div className="showEventCalendar">

@@ -17,7 +17,6 @@ interface userCardProps {
 }
 
 export const UserCard: React.FC<userCardProps> = ({
-  id,
   firstName,
   lastName,
   secondLastName,
@@ -30,7 +29,8 @@ export const UserCard: React.FC<userCardProps> = ({
   className,
 }) => {
   dayjs.locale("es");
-  const rootUrl = "http://localhost:4000";
+  // const rootUrl = "http://localhost:4000";
+  const rootUrl = "https://schoolsapp-production.up.railway.app"
   const birthdayDate = dayjs(birthday).format("DD/MM/YYYY");
   return (
     <div className={`userCardDesign ${className}`}>

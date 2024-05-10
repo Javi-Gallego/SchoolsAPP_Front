@@ -13,6 +13,8 @@
   width: 65vw;
   display: flex;
   margin: 0.3em;
+  font-weight: bold;
+  font-size: 1.3rem;
   flex-direction: row;
   justify-content: center;
   border: 0.1em var(--secondary-color) solid;
@@ -54,5 +56,32 @@
 @media (min-width: 551px) {
   .chatCard {
     width: 45vw;
+  }
+}
+@media (min-width: 551px) {
+  .chatCard {
+    width: 45vw;
+  }
+}
+@media screen and (min-width: 640px) {
+  .chatCard {
+    width: 40vw;
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 1601px) {
+  .chatCard {
+    width: 35vw;
+    font-size: 1.4rem;
+  }
+}
+@media screen and (min-height: 745px) {
+  .chatCard {
+    height: 7vh;
+  }
+}
+@media screen and (min-height: 900px) {
+  .chatCard {
+    height: 5vh;
   }
 }

@@ -35,9 +35,21 @@
   align-items: center;
   cursor: pointer;
 }
-
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 641px) {
   .addButton {
-      width: 5%;
+    width: 5%;
+  }
+  .subjectCard{
+    width: 40%;
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 1281px) {
+  .addButton {
+    width: 4%;
+  }
+  .subjectCard{
+    width: 35%;
+    font-size: 1.4rem;
   }
 }

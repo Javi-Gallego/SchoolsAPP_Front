@@ -21,7 +21,6 @@ export const Stages: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [stages, setStages] = useState<Stage[]>([]);
   const [firstFetch, setFirstFetch] = useState<boolean>(false);
-  const [addStage, setAddStage] = useState<boolean>(false);
   const [stageName, setStageName] = useState<setStage>({
     name: "",
     schoolId: schoolId,
@@ -49,10 +48,6 @@ export const Stages: React.FC = () => {
     } catch (error) {}
   };
 
-  const toggleAddStage = () => {
-    setAddStage(!addStage);
-  };
-
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setStageName((prevState) => ({
       ...prevState,
@@ -64,6 +59,7 @@ export const Stages: React.FC = () => {
     try {
       await createStage(token, stageName);
       fetchStages();
+      setIsOpen(false);
     } catch (error) {}
   };
 

@@ -27,6 +27,7 @@ export const Subjects: React.FC = () => {
 
   useEffect(() => {
     if (token === "" || isTokenExpired(token)) {
+      logout();
       navigate("/");
     }
     if (roleName !== "admin" && roleName !== "super_admin") {

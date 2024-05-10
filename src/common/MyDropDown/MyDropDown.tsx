@@ -22,7 +22,7 @@ export const MyDropDown = () => {
     setMyDropdown(!myDropdown);
   };
 
-  const selectChild = (child: any, index: number) => {
+  const selectChild = (index: number) => {
     setActiveUser(index);
     if (setUserCourseId && setUserStageId) {
       setUserCourseId(courses[index].id);
@@ -49,7 +49,7 @@ export const MyDropDown = () => {
             <div
               key={`child${index}`}
               className={`headerLinkDesign ${activeUser === index ? "active" : ""}`}
-              onClick={() => selectChild(child, index)}
+              onClick={() => selectChild(index)}
             >
               {child.firstName} {child.lastName} {child.secondLastName}
             </div>

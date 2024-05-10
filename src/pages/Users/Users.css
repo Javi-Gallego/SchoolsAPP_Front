@@ -14,7 +14,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary-color);
   color: var(--tertiary-color);
   font-size: 2rem;
   font-weight: bold;
@@ -25,7 +24,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--secondary-color);
   color: var(--tertiary-color);
 }
 .userFilter {

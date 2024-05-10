@@ -131,10 +131,10 @@ export const Messages: React.FC = () => {
           type={"text"}
           name={"fisrtName"}
           value={query.firstName || ""}
-          placeholder={"Nombre usuario"}
+          placeholder={"Buscar usuario"}
           disabled={false}
           onChangeFunction={inputHandler}
-          className={"loginInputDesign marginTopBottom"}
+          className={"searchUserInputDesign marginTopBottom margitBottomButton"}
         />
         {users && users.length > 0
           ? Array.isArray(users) &&

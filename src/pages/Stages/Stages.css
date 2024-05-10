@@ -19,7 +19,7 @@
   justify-content: space-between;
   border: 0.1em var(--secondary-color) solid;
 }
-.stageTitle{
+.stageTitle {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -28,18 +28,36 @@
   font-weight: bold;
 }
 .addStage {
-    width: 5%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
-.trash{
+.trash {
   width: 2em;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+@media screen and (min-width: 641px) {
+  .addStage {
+    width: 5%;
+  }
+  .stageCard{
+    width: 40%;
+    font-size: 1.2rem;
+  }
+}
+@media screen and (min-width: 1281px) {
+  .addStage {
+    width: 4%;
+  }
+  .stageCard{
+    width: 35%;
+    font-size: 1.4rem;
+  }
 }
