@@ -67,7 +67,7 @@ export const DetailConversation: React.FC = () => {
         userId1: nMessage.authorId,
         userId2: nMessage.receiverId,
       };
-      const updatedSeen = await updateSeenMessages(token, updateMessagesFrom);
+      await updateSeenMessages(token, updateMessagesFrom);
     } catch (error) {
       console.log(error);
     }

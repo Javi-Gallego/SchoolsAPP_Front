@@ -185,7 +185,7 @@ export const Events: React.FC = () => {
       ) {
         return;
       }
-      const event = await createEvent(token, newEvent);
+      await createEvent(token, newEvent);
       fetchEvents();
       toggleModal();
     } catch (error) {

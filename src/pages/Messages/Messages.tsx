@@ -53,9 +53,6 @@ export const Messages: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    messages.forEach((message, firstIndex) => {
-      message.messages.forEach((msg: any, secondIndex: any) => {});
-    });
   }, [messages]);
 
   useEffect(() => {
@@ -78,7 +75,7 @@ export const Messages: React.FC = () => {
 
   const fetchUsers = async () => {
     try {
-      const queryFilter = `?schoolId=${schoolId}&roleName=teacher&firstName=${query.firstName}`;
+      const queryFilter = `?schoolId=${schoolId}&roleName=${queryRoleName}&firstName=${query.firstName}`;
       const allUsers = await getUsers(token, queryFilter);
       setUsers(allUsers.data);
     } catch (error) {
@@ -107,7 +104,7 @@ export const Messages: React.FC = () => {
 
   const goToChat = (user: any) => {
     messages.forEach((message, firstIndex) => {
-      message.messages.forEach((msg: any, secondIndex: any) => {
+      message.messages.forEach((msg: any) => {
         if (user.id === msg.author.id || user.id === msg.receiver.id) {
           setAuthorName(messages[firstIndex].authorName);
           setReceiverName(messages[firstIndex].receiverName);

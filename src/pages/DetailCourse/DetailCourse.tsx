@@ -172,7 +172,7 @@ export const DetailCourse: React.FC = () => {
         courseId: courseId,
         subjectId: subjectToErase.id,
       };
-      const response = await deleteCourseSubject(token, courseSubjectToErase);
+      await deleteCourseSubject(token, courseSubjectToErase);
       fetchCourseSubjects();
     } catch (error) {
       console.log("Error erasing course");
@@ -200,7 +200,7 @@ export const DetailCourse: React.FC = () => {
         courseId: courseId,
         subjectId: newSubject.id,
       };
-      const createdCS = await createCourseSubject(token, newCourseSubject);
+      await createCourseSubject(token, newCourseSubject);
       fetchCourseSubjects();
       setIsOpenSubject(!isOpenSubject);
     } catch (error) {

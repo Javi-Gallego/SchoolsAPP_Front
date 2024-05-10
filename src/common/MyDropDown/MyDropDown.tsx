@@ -15,7 +15,7 @@ export const MyDropDown = () => {
   const setUserStageId = useUserInfoStore((state) => state.setUserStageId);
   const deleteCourseStage = useUserInfoStore((state) => state.deleteCourseStage);
   const [activeUser, setActiveUser] = useState(1000);
-  const [contUser, setContUser] = useState(0);
+  const [contUser] = useState(0);
   const [myDropdown, setMyDropdown] = useState(false);
 
   const toggleDropDown = () => {
