@@ -20,10 +20,14 @@ export const Login: React.FC = () => {
   const { setRoles } = useAuthStore();
   const { setSchoolLogo } = useAuthStore();
   const { setChildren } = useAuthStore();
-  const { token } = useAuthStore();
-  const { setUserId } = useUserInfoStore();
-  const { setUserFirstName } = useUserInfoStore();
-  const { setUserRoleName } = useUserInfoStore();
+  const setCourses = useAuthStore((state) => state.setCourses);
+  const token = useAuthStore((state) => state.token);
+  const resetUser = useUserInfoStore((state) => state.resetUser);
+  const setUserId = useUserInfoStore((state) => state.setUserId);
+  const setUserStageId = useUserInfoStore((state) => state.setUserStageId);
+  const setUserCourseId = useUserInfoStore((state) => state.setUserCourseId);
+  const setUserFirstName = useUserInfoStore((state) => state.setUserFirstName);
+  const setUserRoleName = useUserInfoStore((state) => state.setUserRoleName);
   const navigate = useNavigate();
 
   const [credentials, setCredentials] = useState<LoginData>({
@@ -36,6 +40,7 @@ export const Login: React.FC = () => {
       navigate("/home");
     }
   }, []);
+
   useEffect(() => {
     if (token !== "") {
       navigate("/home");
@@ -50,6 +55,7 @@ export const Login: React.FC = () => {
   };
 
   const logMe = async (): Promise<void> => {
+    resetUser();
     const fetched = await LogUser(credentials);
 
     const decoded = decodeToken(fetched.token);
@@ -112,11 +118,18 @@ export const Login: React.FC = () => {
           } else if (
             decoded.roles.includes("parent") &&
             "children" in decoded &&
-            Array.isArray(decoded.children)
+            Array.isArray(decoded.children) &&
+            "courses" in decoded &&
+            Array.isArray(decoded.courses)
           ) {
             setUserId(decoded.children[0].id);
             setUserFirstName(decoded.children[0].firstName);
             setUserRoleName("parent");
+            setCourses(decoded.courses);
+            if (setUserStageId && setUserCourseId) {
+              setUserStageId(decoded.courses[0].stageId);
+              setUserCourseId(decoded.courses[0].id);
+            }
           }
         }
       }

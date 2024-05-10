@@ -9,6 +9,14 @@ export interface Child{
   profilePhoto: string;
 }
 
+export interface CourseInterface{
+ id: number;
+  name: string;
+  stageId: number;
+  tutorId: number;
+  year: number;
+}
+
 interface Auth {
   token: string;
   id: number;
@@ -18,6 +26,7 @@ interface Auth {
   roles: string[];
   schoolLogo: string;
   children: Child[];
+  courses: CourseInterface[];
   setToken: (newToken: string) => void;
   setId: (newId: number) => void;
   setFirstName: (newFirstName: string) => void;
@@ -26,6 +35,7 @@ interface Auth {
   setRoles: (newRoles: string[]) => void;
   setSchoolLogo: (newSchoolLogo: string) => void;
   setChildren: (newChildren: Child[]) => void;
+  setCourses: (newCourses: CourseInterface[]) => void;
   logout: () => void;
 }
 
@@ -40,6 +50,7 @@ export const useAuthStore = create<Auth>()(
       roles: [],
       schoolLogo: "",
       children: [],
+      courses: [],
       setToken: (newToken: string) => set({ token: newToken }),
       setId: (newId: number) => set({ id: newId }),
       setFirstName: (newFirstName: string) => set({ firstName: newFirstName }),
@@ -50,6 +61,7 @@ export const useAuthStore = create<Auth>()(
       setSchoolLogo: (newSchoolLogo: string) =>
         set({ schoolLogo: newSchoolLogo }),
       setChildren: (newChildren: Child[]) => set({ children: newChildren }),
+      setCourses: (newCourses: CourseInterface[]) => set({ courses: newCourses }),
       logout: () =>
         set({
           token: "",

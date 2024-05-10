@@ -4,8 +4,8 @@ import { useAuthStore } from "../../store/credentials";
 import { useUserInfoStore } from "../../store/userData";
 
 export const LogoutLink = () => {
-  const { logout } = useAuthStore();
-  const { resetUser } = useUserInfoStore();
+  const logout = useAuthStore((state) => state.logout);
+  const resetUser = useUserInfoStore((state) => state.resetUser);
   const navigate = useNavigate();
 
   const logoutMe = () => {

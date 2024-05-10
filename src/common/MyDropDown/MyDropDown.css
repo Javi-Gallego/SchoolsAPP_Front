@@ -30,5 +30,13 @@
 .show {
   display: block;
 }
+.childList{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 0.2em 0.8em;
+}
 
 
