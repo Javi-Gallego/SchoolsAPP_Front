@@ -12,6 +12,7 @@ interface userInfo {
   setUserRoleName: (newRoleName: string) => void;
   setUserStageId?: (newStageId: number) => void;
   setUserCourseId?: (newCourseId: number) => void;
+  deleteCourseStage: () => void;
   resetUser: () => void;
 }
 
@@ -26,6 +27,11 @@ export const useUserInfoStore = create<userInfo>()(
       setUserRoleName: (newRoleName: string) => set({ roleName: newRoleName }),
       setUserStageId: (newStageId: number) => set({ stageId: newStageId }),
       setUserCourseId: (newCourseId: number) => set({ courseId: newCourseId }),
+      deleteCourseStage: () => 
+        set({ 
+          courseId: undefined,
+          stageId: undefined
+        }),
       resetUser: () =>
         set({
           id: 0,
