@@ -77,7 +77,7 @@ export const Courses: React.FC = () => {
   }, [teachers]);
 
   useEffect(() => {
-    let stageId = stages.find((stage) => stage.name === stageType)?.id;
+    let stageId = stages.find((stage) => stage.name === stageType)?.id || 0;
     if (stageId && typeof stageId === "number") {
       setNewCourse((prevState) => ({
         ...prevState,
