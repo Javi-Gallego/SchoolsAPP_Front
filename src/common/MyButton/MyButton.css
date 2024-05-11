@@ -29,7 +29,7 @@
   font-size: 1rem;
 }
 .slimButtonDesign {
-  width: 18vw;
+  width: 55vw;
   height: 5vh;
   border-radius: 0.2em;
   font-size: 1rem;
@@ -46,12 +46,18 @@
     width: 20vw;
     height: 5vh;
   }
+  .slimButtonDesign {
+    width: 25vw;
+  }
 }
 @media screen and (min-width: 1281px) {
   .authButtonDesign {
     width: 25vw;
   }
   .loginButtonDesign {
+    width: 20vw;
+  }
+  .slimButtonDesign {
     width: 20vw;
   }
 }
@@ -64,12 +70,15 @@
     font-size: 1.4rem;
   }
 }
-@media screen and (min-height: 981px) {
+@media screen and (min-height: 915px) {
   .authButtonDesign {
     height: 4.5vh;
   }
   .loginButtonDesign {
     height: 4vh;
     font-size: 1.5rem;
+  }
+  .slimButtonDesign {
+    height: 3.5vh;
   }
 }

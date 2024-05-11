@@ -39,7 +39,7 @@
   width: 12%;
 }
 .addEvent{
-  width: 5%;
+  width: 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,4 +55,14 @@
 }
 .eventDescriptionModal{
   width: 95%;
+}
+@media screen and (min-width: 641px) {
+  .addEvent {
+    width: 5%;
+  }
+}
+@media screen and (min-width: 1281px) {
+  .addEvent {
+    width: 4%;
+  }
 }

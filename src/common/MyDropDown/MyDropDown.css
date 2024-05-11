@@ -12,6 +12,8 @@
 .dropDownContent {
   display: none;
   position: absolute;
+  left: 0%;
+  top: 100%;
   background-color: var(--primary-color);
   width: 50vw;
   box-shadow: 0 0.5em 1em 0.2em rgba(0, 0, 0, 0.2);
@@ -21,6 +23,7 @@
 .headerPhotoProfile {
   height: 100%;
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -45,6 +48,15 @@
 }
 .registerSwitch{
   height: 2em;
+}
+@media (min-width: 641px) {
+  .dropDownContent {
+    width: 30vw;
+  }
+}@media (min-width: 1281px) {
+  .dropDownContent {
+    width: 25vw;
+  }
 }
 
 

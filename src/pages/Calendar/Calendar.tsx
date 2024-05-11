@@ -116,7 +116,6 @@ export const Calendar = () => {
       roleName === "super_admin" ||
       roleName === "personal" ? (
         <div className="calendarFilters">
-          <div className="filterTitle">Filtros</div>
           <div className="filterRow">
             <div className="filterSelect">
               <NativeSelect
@@ -146,9 +145,11 @@ export const Calendar = () => {
           initialView="dayGridMonth"
           events={events}
           eventClick={handleEventClick}
-          contentHeight="77vh"
+          contentHeight="74vh"
           firstDay={1}
+          aspectRatio={2}
         />
+        </div>
         <Modal isOpen={isOpen} toggleModal={toggleModal}>
           <div className="showEventCalendar">
             {eventInfo && (
@@ -175,6 +176,6 @@ export const Calendar = () => {
           </div>
         </Modal>
       </div>
-    </div>
+
   );
 };

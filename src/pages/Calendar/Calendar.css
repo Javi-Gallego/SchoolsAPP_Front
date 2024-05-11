@@ -70,13 +70,25 @@
 .filterSelect{
   width: 35%;
 }
-@media (min-width: 468px) {
+@media (min-width: 641px) {
   .containerCalendar {
     width: 50%;
   }
+  .calendarFilters {
+    width: 65vw;
+  }
+  .filterSelect{
+    width: 20%;
+  }
 }
-@media (min-width: 768px) {
+@media (min-width: 1281px) {
   .containerCalendar {
-    width: 70%;
+    width: 65%;
+  }
+  .calendarFilters {
+    width: 65vw;
+  }
+  .filterSelect{
+    width: 20%;
   }
 }
