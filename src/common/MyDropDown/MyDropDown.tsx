@@ -13,6 +13,7 @@ export const MyDropDown = () => {
   const roles = useAuthStore((state) => state.roles);
   const setUserCourseId = useUserInfoStore((state) => state.setUserCourseId);
   const setUserStageId = useUserInfoStore((state) => state.setUserStageId);
+  const setUserRoleName = useUserInfoStore((state) => state.setUserRoleName);
   const deleteCourseStage = useUserInfoStore((state) => state.deleteCourseStage);
   const [activeUser, setActiveUser] = useState(1000);
   const [contUser] = useState(0);
@@ -27,11 +28,13 @@ export const MyDropDown = () => {
     if (setUserCourseId && setUserStageId) {
       setUserCourseId(courses[index].id);
       setUserStageId(courses[index].stageId);
+      setUserRoleName("parent");
     }
   };
 
-  const selectParent = () => {
+  const selectTeacher = () => {
     setActiveUser(contUser);
+    setUserRoleName("teacher");
     deleteCourseStage();
   };
 
@@ -55,11 +58,11 @@ export const MyDropDown = () => {
             </div>
           ),
           )}
-        {roles.includes("parent") && roles.length > 1 && (
+        {roles.includes("teacher") && roles.length > 1 && (
           <>
             <div
               className={`headerLinkDesign ${activeUser === contUser ? "active" : ""}`}
-              onClick={() => selectParent()}
+              onClick={() => selectTeacher()}
             >
               Perfil propio de {firstName}
             </div>

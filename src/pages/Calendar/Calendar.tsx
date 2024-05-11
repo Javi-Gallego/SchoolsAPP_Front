@@ -18,6 +18,8 @@ export const Calendar = () => {
   const token = useAuthStore((state) => state.token);
   const schoolId = useAuthStore((state) => state.schoolId);
   const roleName = useUserInfoStore((state) => state.roleName);
+  const userCourseId = useUserInfoStore((state) => state.courseId);
+  const userStageId = useUserInfoStore((state) => state.stageId);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [eventInfo, setEventInfo] = useState<MyEvent | null>(null);
   const [events, setEvents] = useState<MyEvent[]>([]);
@@ -42,7 +44,7 @@ export const Calendar = () => {
 
   useEffect(() => {
     fetchEvents();
-  }, [stageType, courseType]);
+  }, [stageType, courseType, roleName]);
 
   const fetchStages = async () => {
     try {
@@ -64,16 +66,19 @@ export const Calendar = () => {
 
       const stage = stages.find((stage) => stage.name === stageType);
       const stageId = stage ? stage.id : null;
-      if (stageId) {
+      if (stageId && roleName !== "parent") {
         query += `&stageId=${stageId}`;
       }
 
       const course = courses.find((course) => course.name === courseType);
       const courseId = course ? course.id : null;
-      if (courseId) {
+      if (courseId && roleName !== "parent") {
         query += `&courseId=${courseId}`;
       }
 
+      if (roleName === "parent") {
+        query += `&stageId=${userStageId}&courseId=${userCourseId}`;
+      }
       const newEvents = await getEvents(token, query);
 
       const filteredEvents = newEvents.data.map((event) => ({

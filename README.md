@@ -236,7 +236,7 @@ Due to the different roles, the register page was more complex that in the other
 
 ## Future features
 
-
+[ ] Add profile section to update your personal info
 
 [ ] Add Notifications page.
 

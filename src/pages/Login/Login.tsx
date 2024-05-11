@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Login.css";
 import { LoginData } from "../../interfaces/interfaces";
-import { LogUser } from "../../services/ApiCalls";
+import { LogUser, getStudentsCourse, getUsers } from "../../services/ApiCalls";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { decodeToken } from "react-jwt";
 import { useAuthStore } from "../../store/credentials";
@@ -21,6 +21,8 @@ export const Login: React.FC = () => {
   const { setRoles } = useAuthStore();
   const { setSchoolLogo } = useAuthStore();
   const { setChildren } = useAuthStore();
+  const setUserInfoCourseId = useUserInfoStore((state) => state.setUserCourseId);
+  const setUserInfoStageId = useUserInfoStore((state) => state.setUserStageId);
   const setCourses = useAuthStore((state) => state.setCourses);
   const token = useAuthStore((state) => state.token);
   const resetUser = useUserInfoStore((state) => state.resetUser);
@@ -60,7 +62,7 @@ export const Login: React.FC = () => {
     const fetched = await LogUser(credentials);
 
     const decoded = decodeToken(fetched.token);
-    console.log(decoded);
+
     setToken(fetched.token);
 
     if (typeof decoded === "object" && decoded !== null) {
@@ -139,6 +141,11 @@ export const Login: React.FC = () => {
       }
       if ("children" in decoded && Array.isArray(decoded.children)) {
         setChildren(decoded.children);
+        const child = await getStudentsCourse(fetched.token, decoded.children[0].id);
+        if(child.data[0].courseId){
+          setUserInfoCourseId(child.data[0].courseId);
+          setUserInfoStageId(child.data[0].courseU.stageId);
+        }
       }
     }
   };

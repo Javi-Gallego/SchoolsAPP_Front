@@ -622,3 +622,30 @@ export const updateSeenMessages = async (token:string, message: seenMessages): P
     return answer;
   }
 };
+
+export const getStudentsCourse = async (token:string, student: number): Promise<DataFetched> => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    console.log("url: ", `${rootUrl}/courseusers/infostudent/${student}`)
+    const response = await fetch(`${rootUrl}/courseusers/infostudent/${student}`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};

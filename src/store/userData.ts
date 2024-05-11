@@ -5,13 +5,13 @@ interface userInfo {
   id: number;
   firstName: string;
   roleName: string;
-  stageId?: number;
-  courseId?: number;
+  stageId: number;
+  courseId: number;
   setUserId: (newId: number) => void;
   setUserFirstName: (newFirstName: string) => void;
   setUserRoleName: (newRoleName: string) => void;
-  setUserStageId?: (newStageId: number) => void;
-  setUserCourseId?: (newCourseId: number) => void;
+  setUserStageId: (newStageId: number) => void;
+  setUserCourseId: (newCourseId: number) => void;
   deleteCourseStage: () => void;
   resetUser: () => void;
 }
@@ -22,6 +22,8 @@ export const useUserInfoStore = create<userInfo>()(
       id: 0,
       firstName: "",
       roleName: "",
+      courseId: 0,
+      stageId: 0,
       setUserId: (newId: number) => set({ id: newId }),
       setUserFirstName: (newFirstName: string) => set({ firstName: newFirstName }),
       setUserRoleName: (newRoleName: string) => set({ roleName: newRoleName }),
@@ -29,14 +31,16 @@ export const useUserInfoStore = create<userInfo>()(
       setUserCourseId: (newCourseId: number) => set({ courseId: newCourseId }),
       deleteCourseStage: () => 
         set({ 
-          courseId: undefined,
-          stageId: undefined
+          courseId: 0,
+          stageId: 0,
         }),
       resetUser: () =>
         set({
           id: 0,
           firstName: "",
           roleName: "",
+          courseId: 0,
+          stageId: 0,
         }),
     }),
     {
