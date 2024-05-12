@@ -4,7 +4,7 @@
 <center><img src="./public/favicon.png"/></center>
 
 
-This is the last project for the FullStackDeveloper Bootcamps at GeeksHubs Academy. The APP is a platform that brings closer schools, students and parents. 
+This is the last project for the FullStackDeveloper Bootcamp at GeeksHubs Academy. The APP is a platform that brings closer schools, students and parents. 
 
   ## Content 📝
   <ol>
@@ -140,6 +140,8 @@ To log as a teacher that is also a parent you can either use this one or you can
 - MENU
 <center><img src="./public/menuadmin.png"></center>
 
+All the data that can be added (subjects, stages, courses or users) will be assigned to the same school as the admin is assigned.
+
 - REGISTER :earth_africa:
 
 <center><img src="./public/register1.jpg"></center>
@@ -153,25 +155,34 @@ As a user can have more than one role, if you want to add a teacher that is alre
 
 <center><img src="./public/users.jpg"></center>
 
-As you are writing in the inputs you can see if the field has an error and is not valid
+As you are writing in the inputs you can see the users that match the conditions. A partial coincidence is enough.
+
+<center><img src="./public/userdetail.jpg"></center>
+
+If you click in an user you can see its detailed view. If the searched user is a student you can see its parent data and switch between them. If the user is a parent you will be able to see their children and see their info clicking in ther name. 
 
 - SUBJECTS :earth_africa:
 
 <center><img src="./public/subjects.jpg"></center>
 
-As you are writing in the inputs you can see if the field has an error and is not valid
+All the subjects that are taught at school. They can be added or deleted.
 
 - STAGES :earth_africa:
 
 <center><img src="./public/stages.jpg"></center>
 
-As you are writing in the inputs you can see if the field has an error and is not valid
+All the stages that can be studied in the school. They can be added or deleted (only if there is no course assigned to that stage)
 
 - COURSES :earth_africa:
 
 <center><img src="./public/courses.jpg"></center>
 
-As you are writing in the inputs you can see if the field has an error and is not valid
+All the courses of the school ordered by stages and year
+
+<center><img src="./public/coursedetail.jpg"></center>
+
+In the detailed view of the course you can see to what stages is assigned, the year within that stage, their tutor (and you can add or change the teacher assigned), you can see the subjects studied in that course and add or delete. Finally, the students that study in that course are showed.
+
 
 
 </details>
@@ -189,12 +200,13 @@ As you are writing in the inputs you can see if the field has an error and is no
 
 - EVENTS
 
-<center><img src="./public/navbar.jpg"></center> 
+<center><img src="./public/events.jpg"></center> 
 
-Detail of de header when a user is logged. There are three sections.
+This is the event view that is not accessible by parents and students.
 
-In the left we can go to "profile", "my posts", "following" and "search". In your profile you can change your first and last name, your photo, your password and you can 
+The events showed can be viewed on the calendar by parents and students and a teacher or admin can add new events.
 
+<center><img src="./public/eventdetail.jpg"></center> 
 
 </details>
 
@@ -211,7 +223,13 @@ In the left we can go to "profile", "my posts", "following" and "search". In you
 
 <center><img src="./public/calendar.jpg"></center>
 
-In this page you will see all events related to the child of the user. If parents have more than one child they will be capable of switch between them.
+In this section if you are a student you will see the events that affects you, if the user is a father you will see all the events related to the child of the user. If the user is a teacher or an admin, two filters will appear to search for some events because by default it will retrieve all events of the school. If an event is clicked a window showing its details will show.
+
+<center><img src="./public/calendardetail.jpg"></center>
+
+If parents have more than one child they will be capable of switch between them.
+
+<center><img src="./public/switchchildren.jpg"></center>
 
 - MESSAGES
 
@@ -227,18 +245,18 @@ In this page you can see chats with teachers or personal of the school. It will 
 </details>
 
 ## Problems solutions
-The project with the most problems due to the deadline of two weeks.
+The project with the most problems due to the deadline of two weeks and the decission of use Typescrypt for the first time with React.
 This time I opted to use Zustand instead of Redux because I wanted to learn another method to manage global states.
 I also used FullCalendar because I wanted to create a good user experience and I thought that see events in a real calendar was more user friendly and intuitive.
-The most problematics issues were the fact that one user can have more than one role and that a parent can have more than one child. I had to create an intermediate table for both problems and make more difficult calls to DB to retrieve all data with the login so the user can swith between the options.
+The worst issues were the fact that one user can have more than one role and that a parent can have more than one child. I had to create an intermediate table for both problems and make more difficult calls to DB to retrieve all data with the login so the user can swith between the options.
 Due to the different roles, the register page was more complex that in the other projects I made until now.
 
 
 ## Future features
 
-[ ] Add profile section to update your personal info
+[ ] Add a way to assign students to a course
 
-[ ] Add Notifications page.
+[ ] Add profile section to update your personal info
 
 [ ] Add a page to make the assistance of the students of a class so teachers can inform if a student is absent.
 

@@ -21,7 +21,7 @@ export const MyCard: React.FC<MyCardProps> = ({
       </div>
       <div className="titleBar">
         <div className="sideTitleCard"></div>
-        <div className="titleCard">
+        <div className={title.length > 10 ? "titleCard miniText" : "titleCard"}>
           {title}
         </div>
         <div className="sideTitleCard">

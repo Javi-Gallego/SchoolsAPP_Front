@@ -194,7 +194,7 @@ export interface querySearchUsersChat {
 export interface setParentStudent{
   parentId: number;
   studentId: number;
-}
+};
 
 export interface RegisterUserResponse {
   success: boolean;
@@ -202,4 +202,37 @@ export interface RegisterUserResponse {
   data: {
     id: number;
   };
+};
+
+export interface Publisher {
+  id: number;
+  firstName: string;
+  lastName: string;
+  secondLastName: string;
+  email: string;
+  phone: string;
+  address: string;
+  birthdate: Date;
+  schoolId: number;
+  profilePhoto: string;
+};
+
+export interface NotificationI {
+  id: number;
+  title: string;
+  message: string;
+  publisher: Publisher;
+  stage: Stage;
+  course: Course;
+  viewers: number[];
+  createdAt: Date;
+};
+
+export interface SetNotification {
+  title: string;
+  message: string;
+  publisherId: number;
+  stageId: number;
+  courseId: number;
+  schoolId: number;
 };

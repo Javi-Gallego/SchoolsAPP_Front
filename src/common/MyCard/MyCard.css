@@ -73,8 +73,16 @@
   font-weight: bold;
   font-size: 1.2rem;
 }
+.miniText{
+  font-size: 1rem;
+}
 @media (min-width: 451px) {
   .pendingCountCircle {
     font-size: 1.4rem;
+  }
+}
+@media (min-width: 641px) {
+  .miniText {
+    font-size: 1.3rem;
   }
 }

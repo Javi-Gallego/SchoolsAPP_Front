@@ -10,6 +10,7 @@ import { SVGTrash } from "../../common/SVGTrash/SVGTrash";
 import { useNavigate } from "react-router-dom";
 import { useUserInfoStore } from "../../store/userData";
 import { isTokenExpired } from "../../utils/functions";
+import { Modal } from "../../common/Modal/Modal";
 
 export const Subjects: React.FC = () => {
   const navigate = useNavigate();
@@ -95,6 +96,7 @@ export const Subjects: React.FC = () => {
         <div className="addButton" onClick={toggleAddSubject}>
           <SVGAdd color="var(--tertiary-color)" />
         </div>
+        <Modal isOpen={addSubject} toggleModal={toggleAddSubject} >
         {addSubject && (
           <div className="addSubject">
             <MyInput
@@ -113,6 +115,8 @@ export const Subjects: React.FC = () => {
             />
           </div>
         )}
+        </Modal>
+        
       </div>
     </>
   );

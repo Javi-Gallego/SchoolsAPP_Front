@@ -12,6 +12,7 @@ import { Messages } from "../Messages/Messages";
 import { DetailConversation } from "../DetailConversation/DetailConversation";
 import { Users } from "../Users/Users";
 import { DetailUser } from "../DetailUser/DetailUser";
+import { Notifications } from "../Notifications/Notifications";
 
 export const Body = () => {
   return (
@@ -30,6 +31,7 @@ export const Body = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/messages" element={<Messages />} />
       <Route path="/detailconversation" element={<DetailConversation />} />
+      <Route path="/notifications" element={<Notifications />} />
       <Route path="*" element={<Navigate to="/home" />} />
     </Routes>
   );

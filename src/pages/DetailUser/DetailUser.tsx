@@ -52,11 +52,14 @@ export const DetailUser: React.FC = () => {
           </div>
         ) : (
           <div className="familyList">
-            <div className="familyMembers">
+            <div className="familyMembers" onClick={() => changeMember(1)}>
               {detailedUser.firstName} {detailedUser.lastName}
             </div>
-            <div className="familyMembers">Tutor 1</div>
-            <div className="familyMembers">Tutor 2</div>
+            {detailedUser.studentid.map((student, index) => (
+              <div className="familyMembers" key={`child${index}`} onClick={() => changeMember(index+2)}>
+                {student.parent.firstName} {student.parent.lastName}
+              </div>
+            ))}
           </div>
         )
       ) : null}
@@ -74,7 +77,7 @@ export const DetailUser: React.FC = () => {
         roles={detailedUser.roles}
         className={showUserCard === 1 ? "" : "userCardHidden"}
       />
-      {detailedUser.parentid.map((parent, index) => (
+      {detailedUser.parentid.length > 0 && detailedUser.parentid.map((parent, index) => (
           <UserCard
             key={`childCard${index}`}
             id={parent.student.id}
@@ -87,6 +90,22 @@ export const DetailUser: React.FC = () => {
             phone={parent.student.phone}
             profilePhoto={parent.student.profilePhoto}
             roles={parent.student.roles}
+            className={showUserCard === index + 2 ? "" : "userCardHidden"}
+          />
+      ))}
+      {detailedUser.studentid.length > 0 && detailedUser.studentid.map((student, index) => (
+          <UserCard
+            key={`childCard${index}`}
+            id={student.parent.id}
+            firstName={student.parent.firstName}
+            lastName={student.parent.lastName}
+            secondLastName={student.parent.secondLastName}
+            address={student.parent.address}
+            birthday={student.parent.birthday}
+            email={student.parent.email}
+            phone={student.parent.phone}
+            profilePhoto={student.parent.profilePhoto}
+            roles={student.parent.roles}
             className={showUserCard === index + 2 ? "" : "userCardHidden"}
           />
       ))}

@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
   const [pendingMessages, setPendingMessages] = useState<number>(0);
 
   useEffect(() => {
-    if (!token || isTokenExpired(token) ){
+    if (!token || isTokenExpired(token)) {
       logout();
       navigate("/");
     }
@@ -68,14 +68,14 @@ export const Home: React.FC = () => {
                 url="/users"
               />
               <MyCard
-                image={<SVGStages color="var(--secondary-color)" />}
-                title="Etapas"
-                url="/stages"
-              />
-              <MyCard
                 image={<SVGSubjects color="var(--secondary-color)" />}
                 title="Asignaturas"
                 url="/subjects"
+              />
+              <MyCard
+                image={<SVGStages color="var(--secondary-color)" />}
+                title="Etapas"
+                url="/stages"
               />
               <MyCard
                 image={<SVGCourses color="var(--secondary-color)" />}
@@ -108,7 +108,7 @@ export const Home: React.FC = () => {
           <MyCard
             image={<SVGNotifications color="var(--secondary-color)" />}
             title="Notificaciones"
-            url="/stages"
+            url="/notifications"
           />
         </div>
         <div className="logoHome">

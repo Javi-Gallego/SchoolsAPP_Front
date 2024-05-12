@@ -1,7 +1,7 @@
 import { Course, DataFetched, LoginData, Message, RegisterUserResponse, SetCourse, SetCourseSubject, SetSubject, TokenFetched, seenMessages, setEvent, setParentStudent, setStage } from "../interfaces/interfaces";
 
-const rootUrl = "http://localhost:4000/api";  
-// const rootUrl = "https://schoolsapp-production.up.railway.app/api";  
+// const rootUrl = "http://localhost:4000/api";  
+const rootUrl = "https://schoolsapp-production.up.railway.app/api";  
  
 export const LogUser = async (credentials: LoginData): Promise<TokenFetched> => {
     const options = {
@@ -635,6 +635,33 @@ export const getStudentsCourse = async (token:string, student: number): Promise<
   try {
     console.log("url: ", `${rootUrl}/courseusers/infostudent/${student}`)
     const response = await fetch(`${rootUrl}/courseusers/infostudent/${student}`, options);
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    let answer: DataFetched = {
+      message: "",
+      data: [""],
+      success: false,
+    };
+
+    return answer;
+  }
+};
+
+export const getNotifications = async (token:string, query: string): Promise<DataFetched> => {
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    console.log("url: ", `${rootUrl}/notifications${query}`)
+    const response = await fetch(`${rootUrl}/notifications${query}`, options);
 
     const data = await response.json();
 

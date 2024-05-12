@@ -1,0 +1,51 @@
+.notificationsDesign {
+  height: auto;
+  min-height: 90vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+}
+.notificationCard {
+  width: 95%;
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7em;
+  font-weight: bold;
+  background-color: var(--primary-color);
+  border: 0.1em var(--secondary-color) solid;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.notificationDate{
+  width: 20%;
+}
+.notificationTitle{
+  width: 60%;
+}
+.notificationPublisher{
+  width: 20%;
+}
+.addNotification {
+  width: 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+@media screen and (min-width: 641px) {
+  .addNotification {
+    width: 5%;
+  }
+}
+@media screen and (min-width: 1281px) {
+  .addNotification {
+    width: 4%;
+  }
+}

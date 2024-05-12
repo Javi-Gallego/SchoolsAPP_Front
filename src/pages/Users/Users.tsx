@@ -92,7 +92,7 @@ export const Users: React.FC = () => {
             type={"text"}
             name={"firstNameFilter"}
             value={userFilter.firstNameFilter || ""}
-            placeholder={"Nombre"}
+            placeholder={"Buscar por nombre"}
             disabled={false}
             onChangeFunction={(event) =>
               eventHandler(event.currentTarget.value, event.currentTarget.name)
@@ -100,19 +100,19 @@ export const Users: React.FC = () => {
             className={"userSearchInputDesign"}
           />
         </div>
-        <div className="userFilter">
+        {/* <div className="userFilter">
           <MyInput
             type={"text"}
             name={"lastNameFilter"}
             value={userFilter.lastNameFilter || ""}
-            placeholder={"Apellido"}
+            placeholder={"Buscar por pellido"}
             disabled={false}
             onChangeFunction={(event) =>
               eventHandler(event.currentTarget.value, event.currentTarget.name)
             }
             className={"userSearchInputDesign"}
           />
-        </div>
+        </div> */}
       </div>
       <div className="usersList">
         <div className="userSearchCard">

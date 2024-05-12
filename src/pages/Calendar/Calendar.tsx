@@ -44,7 +44,7 @@ export const Calendar = () => {
 
   useEffect(() => {
     fetchEvents();
-  }, [stageType, courseType, roleName]);
+  }, [stageType, courseType, roleName, userCourseId, userStageId]);
 
   const fetchStages = async () => {
     try {
