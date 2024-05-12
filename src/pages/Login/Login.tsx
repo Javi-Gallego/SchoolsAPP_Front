@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Login.css";
 import { LoginData } from "../../interfaces/interfaces";
-import { LogUser, getStudentsCourse, getUsers } from "../../services/ApiCalls";
+import { LogUser, getStudentsCourse } from "../../services/ApiCalls";
 import { MyInput } from "../../common/MyInput/MyInput";
 import { decodeToken } from "react-jwt";
 import { useAuthStore } from "../../store/credentials";
