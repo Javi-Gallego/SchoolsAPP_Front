@@ -44,6 +44,7 @@ export const DetailCourse: React.FC = () => {
   const [selectedSubject, setSelectedSubject] = useState<string>("");
   const [isOpenTutor, setIsOpenTutor] = useState(false);
   const [isOpenSubject, setIsOpenSubject] = useState(false);
+  const [isOpenStudent, setIsOpenStudent] = useState(false);
   const [courseTutorName, setCourseTutorName] = useState<string>("");
   const allSubjectsNamesWithPlaceholder = [
     "Elige una asignatura",
@@ -98,6 +99,10 @@ export const DetailCourse: React.FC = () => {
 
   const toggleModalSubject = () => {
     setIsOpenSubject(!isOpenSubject);
+  };
+
+  const toggleModalStudent = () => {
+    setIsOpenStudent(!isOpenStudent);
   };
 
   const fetchCourseSubjects = async () => {

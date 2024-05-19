@@ -82,6 +82,11 @@ export const Home: React.FC = () => {
                 title="Cursos"
                 url="/courses"
               />
+              <MyCard
+                image={<SVGCourses color="var(--secondary-color)" />}
+                title="Cursos estudiantes"
+                url="/coursestudent"
+              />
             </>
           )}
           {(roleName === "admin" ||

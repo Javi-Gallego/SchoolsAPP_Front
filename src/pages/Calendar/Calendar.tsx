@@ -80,7 +80,7 @@ export const Calendar = () => {
         query += `&stageId=${userStageId}&courseId=${userCourseId}`;
       }
       const newEvents = await getEvents(token, query);
-
+      console.log("fetched Events: ", newEvents);
       const filteredEvents = newEvents.data.map((event) => ({
         title: event.title,
         start: new Date(event.start).toISOString().slice(0, 10),

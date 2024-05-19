@@ -1,7 +1,7 @@
 import { Course, DataFetched, LoginData, Message, RegisterUserResponse, SetCourse, SetCourseSubject, SetSubject, TokenFetched, seenMessages, setEvent, setParentStudent, setStage } from "../interfaces/interfaces";
 
-// const rootUrl = "http://localhost:4000/api";  
-const rootUrl = "https://schoolsapp-production.up.railway.app/api";  
+const rootUrl = "http://localhost:4000/api";  
+// const rootUrl = "https://schoolsapp-production.up.railway.app/api";  
  
 export const LogUser = async (credentials: LoginData): Promise<TokenFetched> => {
     const options = {

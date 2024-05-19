@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { SVGAcademicCap } from "../../common/SVGAcademicCap/SVGAcademicCap";
 
 export const Login: React.FC = () => {
-  // const rootURL = "http://localhost:4000";
-  const rootURL = "https://schoolsapp-production.up.railway.app"
+  const rootURL = "http://localhost:4000";
+  // const rootURL = "https://schoolsapp-production.up.railway.app"
   const { setToken } = useAuthStore();
   const { setId } = useAuthStore();
   const { setFirstName } = useAuthStore();
