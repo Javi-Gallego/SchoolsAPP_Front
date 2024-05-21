@@ -55,7 +55,7 @@ export const CourseStudent: React.FC = () => {
 
     return (
         <div className="detailCourseStudent">
-            <h1>Aquí cada curso y todos sus estudiantes.</h1>
+            <h1>Gestión de alumnos y cursos</h1>
             
             {!firstFetch 
                 ? (<div>"Loading..."</div>) 
@@ -68,8 +68,17 @@ export const CourseStudent: React.FC = () => {
                         data={courses.map((course) => course.name)}
                       />
                     )
-                : (<div>No hay cursos</div>)
+                : (<div>Todavía no hay clases en el colegio</div>)
             }
+            <div className="courseStudentList">
+                {courseStudents.map((courseStudent) => (
+                    <div key={courseStudent.id} className="courseStudent">
+                        <p>{courseStudent.name}</p>
+                        <p>{courseStudent.lastName}</p>
+                        <p>{courseStudent.email}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
