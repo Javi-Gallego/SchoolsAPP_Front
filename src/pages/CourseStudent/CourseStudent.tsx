@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/credentials";
 import { isTokenExpired } from "../../utils/functions";
 import { getCourseStudents, getCourses, getStages } from "../../services/ApiCalls";
+import { NativeSelect } from "@mantine/core";
 
 export const CourseStudent: React.FC = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ export const CourseStudent: React.FC = () => {
     const [stages, setStages] = useState<any[]>([]);
     const [courses, setCourses] = useState<any[]>([]);
     const [courseStudents, setCourseStudents] = useState<any[]>([]);
+    const [courseType, setCourseType] = useState<string>("");
     const [firstFetch, setFirstFetch] = useState<boolean>(false);
 
     useEffect(() => {
@@ -59,12 +61,15 @@ export const CourseStudent: React.FC = () => {
                 ? (<div>"Loading..."</div>) 
                 :  courses.length > 0 ? 
                     (
-                    <div>Estos son los courses</div>
+                        <NativeSelect
+                        value={courseType}
+                        style={{ margin: "1em" }}
+                        onChange={(event) => setCourseType(event.currentTarget.value)}
+                        data={courses.map((course) => course.name)}
+                      />
                     )
                 : (<div>No hay cursos</div>)
             }
-
-
         </div>
     );
 };
