@@ -15,6 +15,7 @@ export const CourseStudent: React.FC = () => {
     const [courses, setCourses] = useState<any[]>([]);
     const [courseStudents, setCourseStudents] = useState<any[]>([]);
     const [courseType, setCourseType] = useState<string>("");
+    const [courseId, setCourseId] = useState<number>(0);
     const [firstFetch, setFirstFetch] = useState<boolean>(false);
 
     useEffect(() => {
@@ -25,10 +26,20 @@ export const CourseStudent: React.FC = () => {
     if (!firstFetch) {
         fetchStages();
       fetchCourses();
-      fetchCourseStudents();
+    //   fetchCourseStudents();
       setFirstFetch(true);
     }
     }, []);
+
+    useEffect(() => {
+         const course = courses.filter((course) => course.name === courseType);
+         console.log("course", course);
+         if (course.length === 0) {
+           return;
+         }
+         setCourseId(course[0].id);
+            fetchCourseStudents();
+    }, [courseType]);
 
     const fetchStages = async () => {
         try {
@@ -46,8 +57,9 @@ export const CourseStudent: React.FC = () => {
 
       const fetchCourseStudents = async () => {
         try {
-        //   const newStudents = await getCourseStudents(token, courseId);
-        //   setCourseStudents(newStudents.data);
+          const newStudents = await getCourseStudents(token, courseId);
+          setCourseStudents(newStudents.data);
+          console.log("newStudents", newStudents.data);
         } catch (error) {
           console.log("Error fetching course students");
         }
@@ -71,11 +83,11 @@ export const CourseStudent: React.FC = () => {
                 : (<div>Todavía no hay clases en el colegio</div>)
             }
             <div className="courseStudentList">
-                {courseStudents.map((courseStudent) => (
-                    <div key={courseStudent.id} className="courseStudent">
-                        <p>{courseStudent.name}</p>
-                        <p>{courseStudent.lastName}</p>
-                        <p>{courseStudent.email}</p>
+                {courseStudents.map((courseStudent, index) => (
+                    <div key={`${index}${courseStudent.Student.id}`} className="courseStudent">
+                        <p>{courseStudent.Student.firstName}</p>
+                        <p>{courseStudent.Student.lastName}</p>
+                        <p>{courseStudent.Student.secondLastName}</p>
                     </div>
                 ))}
             </div>
